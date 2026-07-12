@@ -99,15 +99,11 @@ import { renderBold } from '../lib/markdown.js';
 
   <section id="skills">
     <div class="section-head"><span class="section-num">04</span><h2>Toolkit</h2></div>
-    <div data-reveal>
+    <div class="skills-grid" data-reveal>
       {skillCategories.map((cat) => (
         <div class="skill-cat">
           <h3>{cat.name}</h3>
-          <div class="chips">
-            {cat.items.map((item) => (
-              <span class="chip">{item}</span>
-            ))}
-          </div>
+          <p class="skill-line">{cat.items.join(', ')}</p>
         </div>
       ))}
     </div>
@@ -136,7 +132,7 @@ import { renderBold } from '../lib/markdown.js';
   <footer id="contact">
     <div class="contact-panel" data-reveal>
       <h2>Let's talk product.</h2>
-      <p>Open to conversations on fintech, payments, GenAI product work, or roles where engineering depth and product ownership both matter.</p>
+      <p>Open to conversations on fintech, payments, AI-driven product delivery, or roles where engineering depth and product ownership both matter.</p>
       <div class="contact-links">
         <a class="btn primary" href={`mailto:${profile.email}`}>✉ Email me</a>
         <a class="btn" href={profile.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>

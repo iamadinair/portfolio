@@ -1,0 +1,166 @@
+From aa834cbb5df2262e0c0be4685f30f929227c6f8a Mon Sep 17 00:00:00 2001
+From: Aditya Sunil Nair <adit_nair@hotmail.com>
+Date: Sun, 12 Jul 2026 12:45:47 +0000
+Subject: [PATCH] Ground GenAI mentions in outcomes, rename AI
+ capability/category, compact Toolkit layout
+
+---
+ src/data/capabilities.js |  2 +-
+ src/data/ledger.js       |  2 +-
+ src/data/profile.js      |  4 ++--
+ src/data/roles.js        |  2 +-
+ src/data/skills.js       |  2 +-
+ src/layouts/Layout.astro |  4 ++--
+ src/pages/index.astro    | 10 +++-------
+ src/styles/global.css    | 13 ++++++-------
+ 8 files changed, 17 insertions(+), 22 deletions(-)
+
+diff --git a/src/data/capabilities.js b/src/data/capabilities.js
+index 496e54b..08293df 100644
+--- a/src/data/capabilities.js
++++ b/src/data/capabilities.js
+@@ -4,7 +4,7 @@ export const capabilities = [
+     body: 'Defined and owned product vision and multi-quarter roadmaps at Banxa, Eightcap, and Clear Dynamics, translating regulatory and business constraints into prioritised, measurable delivery.'
+   },
+   {
+-    title: 'GenAI Product Leadership',
++    title: 'AI-Driven Product Delivery',
+     body: 'Shipped LLM-powered onboarding assistants, RAG-based transaction intelligence, and AI anomaly detection across three companies, working hands-on with OpenAI, Claude, Azure OpenAI, and Gemini.'
+   },
+   {
+diff --git a/src/data/ledger.js b/src/data/ledger.js
+index b442f3c..b6693b4 100644
+--- a/src/data/ledger.js
++++ b/src/data/ledger.js
+@@ -24,7 +24,7 @@ export const ledger = [
+     value: '30%',
+     direction: 'down',
+     label: 'Payment & wallet support query handling time',
+-    tag: 'GenAI · Eightcap'
++    tag: 'GenAI support assistant · Eightcap'
+   },
+   {
+     value: '35%',
+diff --git a/src/data/profile.js b/src/data/profile.js
+index 9f44177..9acec2d 100644
+--- a/src/data/profile.js
++++ b/src/data/profile.js
+@@ -1,6 +1,6 @@
+ export const profile = {
+   name: 'Aditya Sunil Nair',
+-  role: 'Senior Product Manager - Fintech, Payments & GenAI',
++  role: 'Senior Product Manager - Fintech, Payments & AI-Driven Delivery',
+   location: 'Melbourne, Australia',
+   summary:
+     "11+ years driving high-impact digital products across fintech, payments, and SaaS, built on a full-stack engineering background and sharpened across crypto, FX trading, wealth management, and financial services. I move the metrics that matter: onboarding conversion, payment success, fraud reduction, time-to-value.",
+@@ -12,7 +12,7 @@ export const profile = {
+     { label: 'Experience', value: '11+ years' },
+     { label: 'Domain', value: 'Fintech · Payments · Crypto' },
+     { label: 'Background', value: 'Engineering, then Product' },
+-    { label: 'Focus', value: 'GenAI · Compliance · Growth' },
++    { label: 'Focus', value: 'GenAI in Fintech Ops · Compliance · Growth' },
+     { label: 'Team scope', value: 'Up to 14, 7 direct reports' },
+     { label: 'Base', value: 'Melbourne, AU' },
+     { label: 'Education', value: 'M.CompSci, La Trobe' }
+diff --git a/src/data/roles.js b/src/data/roles.js
+index 2768306..4b819ae 100644
+--- a/src/data/roles.js
++++ b/src/data/roles.js
+@@ -12,7 +12,7 @@ export const roles = [
+       'Tuned third-party fraud & identity verification tooling, **cutting manual reviews by 20–30%** and **false positives by ~10–15%**.',
+       'Governed the integration roadmap with identity, fraud, and crypto liquidity providers, including API contracts, OAuth 2.0 authentication, and rate-limiting, lifting transaction fulfilment rates by ~10–20%.',
+       'Uses ChatGPT, Claude, and GitLab Duo to accelerate PRD creation, workflow design, and code review collaboration, shortening discovery-to-delivery turnaround.',
+-      'Runs a weekly product showcase focused on AI, sharing GenAI product learnings and driving tooling adoption across the wider team.'
++      'Runs a weekly product showcase on AI-driven delivery, sharing lessons from live GenAI projects and driving adoption of AI-assisted tooling across the wider team.'
+     ],
+     chips: []
+   },
+diff --git a/src/data/skills.js b/src/data/skills.js
+index 65b40a9..a14bb83 100644
+--- a/src/data/skills.js
++++ b/src/data/skills.js
+@@ -7,7 +7,7 @@ export const skillCategories = [
+     ]
+   },
+   {
+-    name: 'GenAI & LLM',
++    name: 'LLM Integration & Tooling',
+     items: [
+       'OpenAI / ChatGPT', 'Claude (Anthropic)', 'Google Gemini', 'Azure OpenAI',
+       'GitLab Duo', 'RAG Architecture', 'AI Agents', 'Prompt Engineering',
+diff --git a/src/layouts/Layout.astro b/src/layouts/Layout.astro
+index 018eb20..c4d026c 100644
+--- a/src/layouts/Layout.astro
++++ b/src/layouts/Layout.astro
+@@ -7,8 +7,8 @@ interface Props {
+ }
+ 
+ const {
+-  title = 'Aditya Sunil Nair - Senior Product Manager, Fintech & GenAI',
+-  description = 'Aditya Sunil Nair, Senior Product Manager across fintech, payments, and GenAI. 11+ years spanning engineering and product.'
++  title = 'Aditya Sunil Nair - Senior Product Manager, Fintech & AI-Driven Delivery',
++  description = 'Aditya Sunil Nair, Senior Product Manager across fintech, payments, and AI-driven product delivery. 11+ years spanning engineering and product.'
+ } = Astro.props;
+ ---
+ <!doctype html>
+diff --git a/src/pages/index.astro b/src/pages/index.astro
+index cf18e1f..a90a2d7 100644
+--- a/src/pages/index.astro
++++ b/src/pages/index.astro
+@@ -99,15 +99,11 @@ import { renderBold } from '../lib/markdown.js';
+ 
+   <section id="skills">
+     <div class="section-head"><span class="section-num">04</span><h2>Toolkit</h2></div>
+-    <div data-reveal>
++    <div class="skills-grid" data-reveal>
+       {skillCategories.map((cat) => (
+         <div class="skill-cat">
+           <h3>{cat.name}</h3>
+-          <div class="chips">
+-            {cat.items.map((item) => (
+-              <span class="chip">{item}</span>
+-            ))}
+-          </div>
++          <p class="skill-line">{cat.items.join(', ')}</p>
+         </div>
+       ))}
+     </div>
+@@ -136,7 +132,7 @@ import { renderBold } from '../lib/markdown.js';
+   <footer id="contact">
+     <div class="contact-panel" data-reveal>
+       <h2>Let's talk product.</h2>
+-      <p>Open to conversations on fintech, payments, GenAI product work, or roles where engineering depth and product ownership both matter.</p>
++      <p>Open to conversations on fintech, payments, AI-driven product delivery, or roles where engineering depth and product ownership both matter.</p>
+       <div class="contact-links">
+         <a class="btn primary" href={`mailto:${profile.email}`}>✉ Email me</a>
+         <a class="btn" href={profile.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+diff --git a/src/styles/global.css b/src/styles/global.css
+index ddb92a7..1aa3514 100644
+--- a/src/styles/global.css
++++ b/src/styles/global.css
+@@ -179,16 +179,15 @@ h2{ font-family:var(--serif); font-weight:600; font-size:clamp(26px,3.4vw,34px);
+ .cap-card p{ color:var(--muted); font-size:14px; margin:0; }
+ 
+ /* ---------- Skills ---------- */
+-.skill-cat{ margin-bottom:26px; }
++.skills-grid{
++  display:grid; grid-template-columns:1fr 1fr; gap:26px 44px;
++}
++@media (max-width:680px){ .skills-grid{ grid-template-columns:1fr; gap:22px; } }
+ .skill-cat h3{
+   font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+-  color:var(--muted-2); margin:0 0 14px;
+-}
+-.chips{ display:flex; flex-wrap:wrap; gap:9px; }
+-.chip{
+-  font-size:13.5px; padding:7px 13px; border:1px solid var(--line); border-radius:100px; color:var(--text);
+-  background:var(--surface);
++  color:var(--muted-2); margin:0 0 8px;
+ }
++.skill-line{ margin:0; color:var(--text); font-size:14px; line-height:1.65; }
+ 
+ /* ---------- Education ---------- */
+ .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+-- 
+2.43.0
+

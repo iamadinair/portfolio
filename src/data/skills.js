@@ -7,7 +7,7 @@ export const skillCategories = [
     ]
   },
   {
-    name: 'GenAI & LLM',
+    name: 'LLM Integration & Tooling',
     items: [
       'OpenAI / ChatGPT', 'Claude (Anthropic)', 'Google Gemini', 'Azure OpenAI',
       'GitLab Duo', 'RAG Architecture', 'AI Agents', 'Prompt Engineering',

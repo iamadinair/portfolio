@@ -4,7 +4,7 @@ export const capabilities = [
     body: 'Defined and owned product vision and multi-quarter roadmaps at Banxa, Eightcap, and Clear Dynamics, translating regulatory and business constraints into prioritised, measurable delivery.'
   },
   {
-    title: 'GenAI Product Leadership',
+    title: 'AI-Driven Product Delivery',
     body: 'Shipped LLM-powered onboarding assistants, RAG-based transaction intelligence, and AI anomaly detection across three companies, working hands-on with OpenAI, Claude, Azure OpenAI, and Gemini.'
   },
   {

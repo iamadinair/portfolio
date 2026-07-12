@@ -12,7 +12,7 @@ export const roles = [
       'Tuned third-party fraud & identity verification tooling, **cutting manual reviews by 20–30%** and **false positives by ~10–15%**.',
       'Governed the integration roadmap with identity, fraud, and crypto liquidity providers, including API contracts, OAuth 2.0 authentication, and rate-limiting, lifting transaction fulfilment rates by ~10–20%.',
       'Uses ChatGPT, Claude, and GitLab Duo to accelerate PRD creation, workflow design, and code review collaboration, shortening discovery-to-delivery turnaround.',
-      'Runs a weekly product showcase focused on AI, sharing GenAI product learnings and driving tooling adoption across the wider team.'
+      'Runs a weekly product showcase on AI-driven delivery, sharing lessons from live GenAI projects and driving adoption of AI-assisted tooling across the wider team.'
     ],
     chips: []
   },

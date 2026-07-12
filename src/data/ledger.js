@@ -24,7 +24,7 @@ export const ledger = [
     value: '30%',
     direction: 'down',
     label: 'Payment & wallet support query handling time',
-    tag: 'GenAI · Eightcap'
+    tag: 'GenAI support assistant · Eightcap'
   },
   {
     value: '35%',
