@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { profile, aboutParagraphs, fieldNote } from '../data/profile.js';
+import { ledger } from '../data/ledger.js';
+import { roles } from '../data/roles.js';
+import { capabilities } from '../data/capabilities.js';
+import { skillCategories } from '../data/skills.js';
+import { education, certifications } from '../data/education.js';
+import { renderBold } from '../lib/markdown.js';
+---
+<Layout>
+  <section class="hero" id="top">
+    <p class="eyebrow">{profile.location}</p>
+    <h1 class="name">{profile.name}</h1>
+    <p class="role">{profile.role}</p>
+    <p class="summary">{profile.summary}</p>
+    <div class="meta-row">
+      <span>Currently → <b>{profile.currentRole}</b></span>
+      <span>Prior → <b>{profile.priorCompanies}</b></span>
+    </div>
+
+    <div class="ledger" data-reveal>
+      <div class="ledger-head">
+        <span>career_ledger.log - measured outcomes</span>
+        <span class="ping"><i></i>live</span>
+      </div>
+      <div class="ledger-grid">
+        {ledger.map((item) => (
+          <div class="ledger-item">
+            <div class={`delta ${item.direction === 'down' ? 'down' : ''}`}>
+              <span class="arrow">{item.direction === 'down' ? '▼' : '▲'}</span>{item.value}
+            </div>
+            <div class="label">{item.label}</div>
+            <span class="tag">{item.tag}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
+    <div class="about-grid" data-reveal>
+      <div>
+        {aboutParagraphs.map((p) => (
+          <p set:html={renderBold(p)} />
+        ))}
+        <p class="field-note">{fieldNote}</p>
+      </div>
+      <div class="stack-card">
+        <h3>At a glance</h3>
+        {profile.glance.map((g) => (
+          <div class="stat-line"><span>{g.label}</span><span>{g.value}</span></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="ledger">
+    <div class="section-head"><span class="section-num">02</span><h2>Career Ledger</h2></div>
+    <p class="section-sub">Six roles, one throughline: turning ambiguous, regulated problems into shipped, measured product.</p>
+
+    <div data-reveal>
+      {roles.map((r) => (
+        <div class="role-entry">
+          <div class="role-meta">
+            <div class="tenure">{r.tenure}</div>
+            <div class="company">{r.company}</div>
+            {r.current && <span class="current">Current</span>}
+          </div>
+          <div class="role-body">
+            <div class="title">{r.title}</div>
+            <ul>
+              {r.bullets.map((b) => (
+                <li set:html={renderBold(b)} />
+              ))}
+            </ul>
+            {r.chips.map((c) => (
+              <span class="proj-chip">{c}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="capabilities">
+    <div class="section-head"><span class="section-num">03</span><h2>Capabilities</h2></div>
+    <p class="section-sub">What I'm actually good at, evidenced rather than asserted.</p>
+    <div class="cap-grid" data-reveal>
+      {capabilities.map((c) => (
+        <div class="cap-card">
+          <h3>{c.title}</h3>
+          <p>{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><span class="section-num">04</span><h2>Toolkit</h2></div>
+    <div data-reveal>
+      {skillCategories.map((cat) => (
+        <div class="skill-cat">
+          <h3>{cat.name}</h3>
+          <div class="chips">
+            {cat.items.map((item) => (
+              <span class="chip">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head"><span class="section-num">05</span><h2>Education &amp; Certifications</h2></div>
+    <div class="edu-grid" data-reveal>
+      <div>
+        {education.map((e) => (
+          <div class="edu-card" style="margin-bottom:22px;">
+            <div class="deg">{e.degree}</div>
+            <div class="sch">{e.school}</div>
+            <div class="yr">{e.period}{e.note ? ` · ${e.note}` : ''}</div>
+          </div>
+        ))}
+      </div>
+      <ul class="cert-list">
+        {certifications.map((c) => (
+          <li><b>{c.name}</b>{c.issuer ? `, ${c.issuer}` : ''}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="contact-panel" data-reveal>
+      <h2>Let's talk product.</h2>
+      <p>Open to conversations on fintech, payments, GenAI product work, or roles where engineering depth and product ownership both matter.</p>
+      <div class="contact-links">
+        <a class="btn primary" href={`mailto:${profile.email}`}>✉ Email me</a>
+        <a class="btn" href={profile.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="/Aditya_Nair_Resume.pdf" target="_blank">Résumé (PDF) ↓</a>
+      </div>
+    </div>
+    <p class="fine">{profile.location} - built from career_ledger.log</p>
+  </footer>
+</Layout>
