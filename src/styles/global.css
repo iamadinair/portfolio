@@ -223,6 +223,57 @@ footer .fine{ text-align:center; margin-top:44px; font-family:var(--mono); font-
 [data-reveal]{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
 [data-reveal].in{ opacity:1; transform:none; }
 
+/* ---------- Projects page ---------- */
+.projects-hero{ padding:72px 0 8px; }
+.projects-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+  gap:24px;
+}
+
+.project-card{
+  border:1px solid var(--line); border-radius:12px; background:var(--surface);
+  padding:28px; display:flex; flex-direction:column; gap:20px;
+  transition:border-color .18s ease, transform .18s ease;
+}
+.project-card:hover{ border-color:var(--signal); transform:translateY(-2px); }
+
+.project-card-header{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+  padding-bottom:18px; border-bottom:1px solid var(--line-soft); flex-wrap:wrap;
+}
+.project-name{
+  font-family:var(--serif); font-weight:600; font-size:19px; line-height:1.3;
+  margin:0; max-width:60%;
+}
+@media (max-width:480px){ .project-name{ max-width:100%; } }
+.project-meta{ text-align:right; font-family:var(--mono); font-size:12px; color:var(--muted-2); line-height:1.6; }
+@media (max-width:480px){ .project-meta{ text-align:left; } }
+.project-meta .p-company{ color:var(--gold); display:block; }
+.project-meta .p-year{ display:block; }
+
+.project-desc{ color:var(--muted); font-size:14.5px; margin:0; }
+
+.project-subhead{
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted-2); margin:0 0 10px;
+}
+
+.project-resp{ margin:0; padding-left:18px; color:var(--muted); }
+.project-resp li{ font-size:13.5px; margin-bottom:8px; line-height:1.55; }
+.project-resp li:last-child{ margin-bottom:0; }
+.project-resp b{ color:var(--gold); font-weight:600; }
+
+.project-tech{ display:flex; flex-wrap:wrap; gap:8px; }
+.tech-chip{
+  font-family:var(--mono); font-size:11.5px; padding:5px 10px; border:1px solid var(--line);
+  border-radius:6px; color:var(--text); background:var(--surface-2);
+}
+
+.project-outcomes{ display:flex; flex-wrap:wrap; gap:18px; padding-top:16px; border-top:1px solid var(--line-soft); }
+.outcome{ min-width:120px; }
+.outcome .o-value{ font-family:var(--mono); font-size:19px; font-weight:600; color:var(--signal); }
+.outcome .o-label{ font-size:12px; color:var(--muted); line-height:1.4; margin-top:2px; }
+
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; }
   [data-reveal]{ opacity:1; transform:none; }
