@@ -1,64 +1,69 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { projects } from '../data/projects.js';
+import { projectGroups } from '../data/projects.js';
 import { renderBold } from '../lib/markdown.js';
 ---
 <Layout
   title="Projects - Aditya Sunil Nair"
-  description="Selected projects from Aditya Sunil Nair's work in fintech, payments, and GenAI product delivery."
+  description="Projects from Aditya Sunil Nair's work in fintech, payments, compliance, and enterprise integration delivery."
 >
   <section class="projects-hero" id="top">
     <p class="eyebrow">Selected Work</p>
     <h1 class="name" style="font-size:clamp(34px,5vw,52px);">Projects</h1>
     <p class="summary">
-      A closer look at three projects spanning payments onboarding, fraud and compliance
-      decisioning, and multi-platform data integration. Each one pulled from the roles
-      on the Career Ledger.
+      Projects across every company on the Career Ledger, grouped by engagement.
+      Some entries (particularly at Clear Dynamics) are light on detail for now
+      and will be expanded over time.
     </p>
   </section>
 
-  <section>
-    <div class="projects-grid" data-reveal>
-      {projects.map((p) => (
-        <div class="project-card">
-          <div class="project-card-header">
-            <h2 class="project-name">{p.name}</h2>
-            <div class="project-meta">
-              <span class="p-company">{p.company}</span>
-              <span class="p-year">{p.year}</span>
-            </div>
-          </div>
-
-          <p class="project-desc">{p.description}</p>
-
-          <div>
-            <p class="project-subhead">Key Responsibilities</p>
-            <ul class="project-resp">
-              {p.responsibilities.map((r) => (
-                <li set:html={renderBold(r)} />
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p class="project-subhead">Technologies</p>
-            <div class="project-tech">
-              {p.tech.map((t) => (
-                <span class="tech-chip">{t}</span>
-              ))}
-            </div>
-          </div>
-
-          <div class="project-outcomes">
-            {p.outcomes.map((o) => (
-              <div class="outcome">
-                <div class="o-value">{o.value}</div>
-                <div class="o-label">{o.label}</div>
+  {projectGroups.map((group) => (
+    <section class="project-group">
+      <p class="group-label">{group.company}</p>
+      <div class="projects-grid" data-reveal>
+        {group.projects.map((p) => (
+          <div class="project-card">
+            <div class="project-card-header">
+              <h2 class="project-name">{p.name}</h2>
+              <div class="project-meta">
+                <span class="p-company">{p.company}</span>
+                <span class="p-year">{p.year}</span>
               </div>
-            ))}
+            </div>
+
+            <p class="project-desc">{p.description}</p>
+
+            <div>
+              <p class="project-subhead">Key Responsibilities</p>
+              <ul class="project-resp">
+                {p.responsibilities.map((r) => (
+                  <li set:html={renderBold(r)} />
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p class="project-subhead">Technologies</p>
+              <div class="project-tech">
+                {p.tech.map((t) => (
+                  <span class="tech-chip">{t}</span>
+                ))}
+              </div>
+            </div>
+
+            {p.outcomes && p.outcomes.length > 0 && (
+              <div class="project-outcomes">
+                {p.outcomes.map((o) => (
+                  <div class="outcome">
+                    <div class="o-value">{o.value}</div>
+                    <div class="o-label">{o.label}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-      ))}
-    </div>
-  </section>
+        ))}
+      </div>
+    </section>
+  ))}
 </Layout>
