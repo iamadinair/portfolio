@@ -11,8 +11,8 @@ export const profile = {
   glance: [
     { label: 'Experience', value: '11+ years' },
     { label: 'Domain', value: 'Fintech · Payments · Crypto' },
-    { label: 'Background', value: 'Engineering, then Product' },
-+   { label: 'Focus', value: 'Onboarding · Compliance · Growth' },
+    { label: 'Background', value: 'Engineering , then Product' },
+    { label: 'Focus', value: 'Onboarding · Compliance · Growth' },
     { label: 'Team scope', value: 'Up to 14, 7 direct reports' },
     { label: 'Base', value: 'Melbourne, AU' },
     { label: 'Education', value: 'M.CompSci, La Trobe' }
