@@ -46,6 +46,7 @@ export const projectGroups = [
           'Introduced LLM-based transaction summarisation and anomaly detection (Azure OpenAI + RAG), improving transparency and reducing fraud investigation volume.',
           'Led an internal AI support assistant, shaped by Amplitude-driven usage analysis, that **cut payment & wallet query handling time by 30%**.',
           'Ran ways-of-working and Agile training sessions for the broader team, improving delivery consistency.',
+          'Conducted market research and competitive analysis, and ran customer interviews and feedback loops to validate roadmap direction.',
           'Led a team of 14, including 7 direct reports, across Product, Engineering, Compliance, and Marketing.'
         ],
         tech: ['PSP Integration', 'Webhook Pipelines', 'Azure OpenAI', 'RAG', 'Amplitude', 'REST APIs'],
@@ -62,9 +63,11 @@ export const projectGroups = [
           'Greenfield B2B white-label prop trading platform and end-to-end prop trading operations management solution, built within Eightcap. Owned product scope end to end, taking the first client from kickoff to go-live in under four months.',
         responsibilities: [
           'Defined product scope, roadmap, and success metrics for a net-new B2B SaaS platform inside an existing regulated business.',
+          'Acted as Development Lead across full-stack delivery, personally responsible for solution design, development, and testing, while leading a team of developers, solution designers, and testers through effort estimation, code reviews, and stakeholder updates.',
           'Integrated **SumSub KYC** via a webhook flow with an idempotent state machine and compliance audit logging.',
-          'Integrated **Stripe Payments**, including checkout sessions, payment intents, and webhook reconciliation.',
+          'Integrated **Stripe Payments** and crypto payment providers, including checkout sessions, payment intents, and webhook reconciliation.',
           'Directed the build of an AI-powered onboarding chatbot, including flow design, tone, and escalation paths to human support.',
+          'Worked closely with support, finance, and risk teams to integrate systems that automated previously manual processes.',
           'Used ProductBoard and ClickUp for backlog prioritisation and delivery management.'
         ],
         tech: ['SumSub KYC', 'Stripe', 'Azure OpenAI', 'RAG', 'ProductBoard', 'ClickUp', 'React', '.NET Core'],

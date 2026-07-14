@@ -26,7 +26,9 @@ export const roles = [
       'Introduced LLM-based transaction summarisation and anomaly detection (Azure OpenAI + RAG), improving transparency and reducing fraud investigation volume.',
       'Led an internal AI support assistant, shaped by Amplitude-driven usage analysis, that **cut payment & wallet query handling time by 30%**.',
       'Ran ways-of-working and Agile training sessions for the broader team, improving delivery consistency and cross-functional collaboration.',
-      'As part of this role, led **PropTradeTech**, a greenfield B2B white-label prop trading platform built within Eightcap, delivering the first client go-live in under four months, with SumSub KYC and Stripe payments integration, plus an AI onboarding chatbot that **cut support tickets ~35%** and **lifted onboarding completion 22%**.'
+      'Conducted market research and competitive analysis to inform roadmap priorities, and ran customer interviews, surveys, and feedback loops to validate feature direction.',
+      'Partnered with leadership on resourcing and budget for the product roadmap, and liaised across sales, finance, support, and marketing to align product delivery with commercial goals.',
+      'As part of this role, led **PropTradeTech** as Development Lead, a greenfield B2B white-label prop trading platform built within Eightcap, personally overseeing solution design and a small delivery team to take the first client from kickoff to go-live in under four months, with SumSub KYC and Stripe payments integration, plus an AI onboarding chatbot that **cut support tickets ~35%** and **lifted onboarding completion 22%**.'
     ],
     chips: ['PropTradeTech', 'Stripe', 'SumSub KYC']
   },
@@ -36,11 +38,12 @@ export const roles = [
     title: 'Product Owner & Lead Software Engineer',
     current: false,
     bullets: [
-      'Dual role across enterprise delivery in financial services, retail, education, and energy, defining product vision and KPIs while architecting Azure Integration Services solutions, leading an average team of 7, including 3 direct reports.',
+      'Dual role as Product Owner and Lead Software Engineer across full-stack delivery, spanning financial services, retail, supply chain, CRM, education, and energy domains, architecting Azure Integration Services solutions and defining product vision and KPIs while leading an average team of 7, including 3 direct reports.',
       "Product Owner & delivery lead on **Latitude Financial Services'** credit card application and onboarding programme, integrating core banking APIs via REST/SOAP.",
       "Delivered platform and integration work for **Bank of Queensland**'s digital banking platform, and **Westpac**'s loans application workflow.",
       'Shipped a streamlined student application platform for **RMIT**, and defined MVP scope for the **Scoot Education** tutoring platform, integrating scheduling, payments, and tutor onboarding.',
-      'Active member of the Clear Dynamics mentorship group, mentoring and training new joiners across product and engineering.'
+      'Partnered with project managers, business analysts, and solution architects on effort and cost estimation for new projects, triaged system bugs raised by QA and production support, and codified reusable design principles and patterns adopted across the engineering team.',
+      'Active member of the Clear Dynamics mentorship group, mentoring, supervising, and training new joiners across product and engineering, including building technical training materials and instructional videos for new starters.'
     ],
     chips: []
   },
@@ -67,7 +70,8 @@ export const roles = [
       'Led integration of Netwealth, BGL, Class, and HUB24, building two-way REST/SOAP connections with Automapper-based data mapping, consolidating multi-platform portfolio data into a single client view.',
       'Diagnosed and resolved a race condition between valuation refresh cycles and transaction history APIs, eliminating client-facing data inconsistencies.',
       'Adapted data models and UI components for multi-currency and multi-region use, supporting platform expansion into new markets.',
-      'Owned delivery of major product features end to end, from requirements analysis and estimation through coding, testing, and documentation, including SQL-based reporting and resolving customer-reported issues.'
+      'Owned delivery of major product features end to end, from requirements analysis and estimation through coding, testing, and documentation, including SQL-based reporting and resolving customer-reported issues.',
+      'Resolved bugs and issues raised by support, working directly with clients on calls to reproduce and fix reported problems, while keeping delivery progress visible to project management.'
     ],
     chips: []
   },
