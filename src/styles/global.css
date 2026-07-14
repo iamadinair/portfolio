@@ -248,18 +248,18 @@ footer .fine{ text-align:center; margin-top:44px; font-family:var(--mono); font-
 .project-card:hover{ border-color:var(--signal); transform:translateY(-2px); }
 
 .project-card-header{
-  display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
-  padding-bottom:18px; border-bottom:1px solid var(--line-soft); flex-wrap:wrap;
+  padding-bottom:18px; border-bottom:1px solid var(--line-soft);
 }
 .project-name{
   font-family:var(--serif); font-weight:600; font-size:19px; line-height:1.3;
-  margin:0; max-width:60%;
+  margin:0 0 10px; max-width:100%;
 }
-@media (max-width:480px){ .project-name{ max-width:100%; } }
-.project-meta{ text-align:right; font-family:var(--mono); font-size:12px; color:var(--muted-2); line-height:1.6; }
-@media (max-width:480px){ .project-meta{ text-align:left; } }
-.project-meta .p-company{ color:var(--gold); display:block; }
-.project-meta .p-year{ display:block; }
+.project-meta{
+  display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap;
+  gap:6px 14px; font-family:var(--mono); font-size:12px; color:var(--muted-2);
+}
+.project-meta .p-company{ color:var(--gold); }
+.project-meta .p-year{ white-space:nowrap; }
 
 .project-desc{ color:var(--muted); font-size:14.5px; margin:0; }
 
