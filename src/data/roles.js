@@ -11,26 +11,26 @@ export const roles = [
       'Redesigned onboarding and risk decisioning flows through A/B experimentation, contributing a **5–10% conversion uplift** and **~15–25% faster approval turnaround**.',
       'Tuned third-party fraud & identity verification tooling, **cutting manual reviews by 20–30%** and **false positives by ~10–15%**.',
       'Governed the integration roadmap with identity, fraud, and crypto liquidity providers, including API contracts, OAuth 2.0 authentication, and rate-limiting, lifting transaction fulfilment rates by ~10–20%.',
-      'Uses ChatGPT, Claude, and GitLab Duo to accelerate PRD creation, workflow design, and code review collaboration, shortening discovery-to-delivery turnaround.',
-      'Runs a weekly product showcase on AI-driven delivery, sharing lessons from live GenAI projects and driving adoption of AI-assisted tooling across the wider team.'
+      'Use Claude, and ChatGPT to accelerate PRD creation, workflow design, and code review collaboration, shortening discovery-to-delivery turnaround.',
+      'Run a weekly product showcase on AI-driven delivery, sharing lessons from live GenAI projects and driving adoption of AI-assisted tooling across the wider team.'
     ],
-    chips: []
+    chips: ['SumSub KYC', 'FrankieOne', 'ComplyAdvantage', 'Plaid', 'Datadog', 'Microsoft Clarity', 'Amplitude']
   },
   {
     tenure: 'May 2023 - Oct 2025',
     company: 'Eightcap Pty. Ltd.',
-    title: 'Product Manager (incl. PropTradeTech project)',
+    title: 'Product Manager (incl. PropTradeTech)',
     current: false,
     bullets: [
       'Owned product strategy for payments, wallets, and crypto integrations at a regulated FX and CFD broker, spanning multiple PSPs, reconciliation flows, and webhook-driven event pipelines, leading a team of 14, including 7 direct reports.',
-      'Introduced LLM-based transaction summarisation and anomaly detection (Azure OpenAI + RAG), improving transparency and reducing fraud investigation volume.',
+      'Introduced LLM-based transaction summarisation and anomaly detection, improving transparency and reducing fraud investigation volume.',
       'Led an internal AI support assistant, shaped by Amplitude-driven usage analysis, that **cut payment & wallet query handling time by 30%**.',
       'Ran ways-of-working and Agile training sessions for the broader team, improving delivery consistency and cross-functional collaboration.',
       'Conducted market research and competitive analysis to inform roadmap priorities, and ran customer interviews, surveys, and feedback loops to validate feature direction.',
       'Partnered with leadership on resourcing and budget for the product roadmap, and liaised across sales, finance, support, and marketing to align product delivery with commercial goals.',
       'As part of this role, led **PropTradeTech** as Development Lead, a greenfield B2B white-label prop trading platform built within Eightcap, personally overseeing solution design and a small delivery team to take the first client from kickoff to go-live in under four months, with SumSub KYC and Stripe payments integration, plus an AI onboarding chatbot that **cut support tickets ~35%** and **lifted onboarding completion 22%**.'
     ],
-    chips: ['PropTradeTech', 'Stripe', 'SumSub KYC']
+    chips: ['PropTradeTech', 'Stripe', 'SumSub KYC', 'FrankieOne', 'Amplitude', 'Hotjar' ]
   },
   {
     tenure: 'Dec 2020 - Apr 2023',
