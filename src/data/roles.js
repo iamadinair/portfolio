@@ -12,15 +12,15 @@ export const roles = [
       'Redesigned onboarding and risk decisioning flows through A/B experimentation, contributing a **5–10% conversion uplift** and **~15–25% faster approval turnaround**.',
       'Tuned third-party fraud & identity verification tooling, **cutting manual reviews by 20–30%** and **false positives by ~10–15%**.',
       'Governed the integration roadmap with identity, fraud, and crypto liquidity providers, including API contracts, OAuth 2.0 authentication, and rate-limiting, lifting transaction fulfilment rates by ~10–20%.',
-      'Leveraged OpenAI and Claude AI to accelerate PRD development, streamline workflow design, and enhance code review collaboration, reducing the time from product discovery to delivery.',
-      'Run weekly product showcase on AI-driven delivery, sharing lessons from live GenAI projects and driving adoption of AI-assisted tooling across the wider team.'
+      'Uses ChatGPT, Claude, and GitLab Duo to accelerate PRD creation, workflow design, and code review collaboration, shortening discovery-to-delivery turnaround.',
+      'Runs a weekly product showcase on AI-driven delivery, sharing lessons from live GenAI projects and driving adoption of AI-assisted tooling across the wider team.'
     ],
     chips: []
   },
   {
     tenure: 'May 2023 - Oct 2025',
     company: 'Eightcap Pty. Ltd.',
-    title: 'Product Manager (incl. PropTradeTech)',
+    title: 'Product Manager (incl. PropTradeTech project)',
     current: false,
     bullets: [
       'Owned product strategy for payments, wallets, and crypto integrations at a regulated FX and CFD broker, spanning multiple PSPs, reconciliation flows, and webhook-driven event pipelines, leading a team of 14, including 7 direct reports.',
