@@ -3,10 +3,23 @@ import Layout from '../layouts/Layout.astro';
 import { profile, aboutParagraphs, fieldNote } from '../data/profile.js';
 import { ledger } from '../data/ledger.js';
 import { roles } from '../data/roles.js';
+import { projectGroups } from '../data/projects.js';
 import { capabilities } from '../data/capabilities.js';
 import { skillCategories } from '../data/skills.js';
 import { education, certifications } from '../data/education.js';
 import { renderBold } from '../lib/markdown.js';
+
+const allProjects = projectGroups.flatMap((g) => g.projects);
+const totalProjects = allProjects.length;
+const totalCompanies = projectGroups.length;
+const featuredNames = [
+  'Onboarding & Compliance Platform',
+  'PropTradeTech Onboarding & Compliance Platform',
+  'Wealth Platform Integration Layer'
+];
+const featuredProjects = featuredNames
+  .map((name) => allProjects.find((p) => p.name === name))
+  .filter(Boolean);
 ---
 <Layout>
   <section class="hero" id="top">
@@ -84,8 +97,46 @@ import { renderBold } from '../lib/markdown.js';
     </div>
   </section>
 
+  <section id="featured-projects">
+    <div class="section-head"><span class="section-num">03</span><h2>Selected Projects</h2></div>
+    <p class="section-sub">A closer look at three engagements spanning crypto compliance, payments onboarding, and wealth-platform integration.</p>
+    <div class="projects-grid" data-reveal>
+      {featuredProjects.map((p) => (
+        <div class="project-card">
+          <div class="project-card-header">
+            <h2 class="project-name">{p.name}</h2>
+            <div class="project-meta">
+              <span class="p-company">{p.company}</span>
+              <span class="p-year">{p.year}</span>
+            </div>
+          </div>
+          <p class="project-desc">{p.description}</p>
+          <div>
+            <p class="project-subhead">Outcomes &amp; Impact</p>
+            <ul class="project-resp">
+              {p.outcomes.slice(0, 3).map((o) => (
+                <li set:html={renderBold(o)} />
+              ))}
+            </ul>
+          </div>
+          <div class="project-tech">
+            {p.tech.slice(0, 4).map((t) => (
+              <span class="tech-chip">{t}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="projects-cta" data-reveal>
+      <p class="projects-cta-text">
+        <strong>{totalProjects} projects</strong> across {totalCompanies} companies, from crypto compliance to wealth-platform integrations.
+      </p>
+      <a class="btn primary" href="/projects">View all Projects ↗</a>
+    </div>
+  </section>
+
   <section id="capabilities">
-    <div class="section-head"><span class="section-num">03</span><h2>Capabilities</h2></div>
+    <div class="section-head"><span class="section-num">04</span><h2>Capabilities</h2></div>
     <p class="section-sub">What I'm actually good at, evidenced rather than asserted.</p>
     <div class="cap-grid" data-reveal>
       {capabilities.map((c) => (
@@ -98,7 +149,7 @@ import { renderBold } from '../lib/markdown.js';
   </section>
 
   <section id="skills">
-    <div class="section-head"><span class="section-num">04</span><h2>Toolkit</h2></div>
+    <div class="section-head"><span class="section-num">05</span><h2>Toolkit</h2></div>
     <div class="skills-grid" data-reveal>
       {skillCategories.map((cat) => (
         <div class="skill-cat">
@@ -110,7 +161,7 @@ import { renderBold } from '../lib/markdown.js';
   </section>
 
   <section id="education">
-    <div class="section-head"><span class="section-num">05</span><h2>Education &amp; Certifications</h2></div>
+    <div class="section-head"><span class="section-num">06</span><h2>Education &amp; Certifications</h2></div>
     <div class="edu-grid" data-reveal>
       <div>
         {education.map((e) => (
