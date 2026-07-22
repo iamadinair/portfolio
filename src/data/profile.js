@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Aditya Sunil Nair',
-  role: 'Senior Product Manager - Fintech, Payments & AI-Driven Delivery',
+  role: 'Senior Product Manager - Fintech, Crypto, Payments & AI-Driven Delivery',
   location: 'Melbourne, Australia',
   summary:
     "11+ years driving high-impact digital products across fintech, payments, and SaaS, built on a full-stack engineering background and sharpened across crypto, FX trading, wealth management, and financial services. I move the metrics that matter: onboarding conversion, payment success, fraud reduction, time-to-value.",
