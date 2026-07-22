@@ -16,7 +16,7 @@ export const capabilities = [
     body: 'Designed and ran A/B testing programmes delivering 5–12% feature performance uplifts, using Amplitude and Mixpanel to find drop-off causes and validate hypotheses at pace.'
   },
   {
-    title: 'Cross-Functional Delivery',
+    title: 'XFN (Cross-Functional) Delivery',
     body: 'Led delivery across Product, Engineering, Compliance, Risk, Legal, Sales, and Marketing, covering stakeholder workshops, sprint ceremonies, UAT coordination, and production deployments.'
   },
   {

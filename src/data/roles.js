@@ -8,10 +8,11 @@ export const roles = [
     current: true,
     bullets: [
       'Own end-to-end delivery for **KYC, KYB, AML, and fraud decisioning** across B2C and B2B channels for a leading crypto on/off-ramp platform, leading a team of 7, including 2 direct reports.',
-      'Grew the platform\u2019s buy/sell coverage by adding new coins and tokens, and integrated multiple DEXs, navigating a lengthy compliance review process while still hitting fast go-to-market targets for each listing.',
+      'Grew the platform\u2019s buy/sell coverage by adding new coins and tokens, and integrated multiple DEXs, navigating a lengthy compliance review process while still hitting fast go-to-market (**GTM**) targets for each listing.',
       'Redesigned onboarding and risk decisioning flows through A/B experimentation, contributing a **5–10% conversion uplift** and **~15–25% faster approval turnaround**.',
       'Tuned third-party fraud & identity verification tooling, **cutting manual reviews by 20–30%** and **false positives by ~10–15%**.',
       'Governed the integration roadmap with identity, fraud, and crypto liquidity providers, including API contracts, OAuth 2.0 authentication, and rate-limiting, lifting transaction fulfilment rates by ~10–20%.',
+      'Runs quarterly **OKR** planning and review cycles, and tracks **NPS** alongside qualitative onboarding feedback to keep roadmap priorities tied to measurable customer and business outcomes.',
       'Uses ChatGPT, Claude, and GitLab Duo to accelerate PRD creation, workflow design, and code review collaboration, shortening discovery-to-delivery turnaround.',
       'Runs a weekly product showcase on AI-driven delivery, sharing lessons from live GenAI projects and driving adoption of AI-assisted tooling across the wider team.'
     ],
@@ -26,9 +27,10 @@ export const roles = [
       'Owned product strategy for payments, wallets, and crypto integrations at a regulated FX and CFD broker, spanning multiple PSPs, reconciliation flows, and webhook-driven event pipelines, leading a team of 14, including 7 direct reports.',
       'Introduced LLM-based transaction summarisation and anomaly detection (Azure OpenAI + RAG), improving transparency and reducing fraud investigation volume.',
       'Led an internal AI support assistant, shaped by Amplitude-driven usage analysis, that **cut payment & wallet query handling time by 30%**.',
-      'Ran ways-of-working and Agile training sessions for the broader team, improving delivery consistency and cross-functional collaboration.',
-      'Conducted market research and competitive analysis to inform roadmap priorities, and ran customer interviews, surveys, and feedback loops to validate feature direction.',
-      'Partnered with leadership on resourcing and budget for the product roadmap, and liaised across sales, finance, support, and marketing to align product delivery with commercial goals.',
+      'Ran ways-of-working and Agile training sessions for the broader team, improving delivery consistency and **XFN** (cross-functional) collaboration.',
+      'Conducted market research and competitive analysis, and ran customer interviews, surveys, feedback loops, and **NPS** tracking to validate **product-market fit (PMF)** signals and inform roadmap priorities.',
+      'Led quarterly **OKR** planning and review cycles across product and engineering, keeping roadmap execution tied to company-level objectives.',
+      'Partnered with leadership on **headcount planning** and budget for the product roadmap, and liaised across sales, finance, support, and marketing to align product delivery with commercial goals.',
       'As part of this role, led **PropTradeTech** as Development Lead, a greenfield B2B white-label prop trading platform built within Eightcap, personally overseeing solution design and a small delivery team to take the first client from kickoff to go-live in under four months, with SumSub KYC and Stripe payments integration, plus an AI onboarding chatbot that **cut support tickets ~35%** and **lifted onboarding completion 22%**.'
     ],
     chips: ['PropTradeTech', 'Stripe', 'SumSub KYC']
