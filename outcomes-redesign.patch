@@ -1,0 +1,308 @@
+From 8a543090629994ed6e9c068725048202a0de8e40 Mon Sep 17 00:00:00 2001
+From: Aditya Sunil Nair <adit_nair@hotmail.com>
+Date: Wed, 22 Jul 2026 01:14:45 +0000
+Subject: [PATCH] Redesign project cards: outcomes-first, drop duplicated
+ responsibilities, add Banxa crypto/DEX detail
+
+---
+ src/data/projects.js     | 141 ++++++++++++++-------------------------
+ src/pages/projects.astro |  22 ++----
+ src/styles/global.css    |   4 --
+ 3 files changed, 56 insertions(+), 111 deletions(-)
+
+diff --git a/src/data/projects.js b/src/data/projects.js
+index 8c76cfa..a09dd88 100644
+--- a/src/data/projects.js
++++ b/src/data/projects.js
+@@ -1,10 +1,11 @@
+ // Projects page content, grouped by company since some companies (Clear
+ // Dynamics in particular) span several distinct client engagements.
+ //
+-// `responsibilities` supports **bold** markers, rendered via renderBold().
+-// `outcomes` is optional (some engagements only have qualitative detail so
+-// far); when present, it renders as a delta-style strip like the ledger's
+-// hero metrics; when omitted, that part of the card is skipped entirely.
++// Cards are outcomes-first by design: `description` sets context (what the
++// product/platform does), and `outcomes` lists the measurable or qualitative
++// impact of the work, not day-to-day responsibilities (those live in the
++// Career Ledger on the homepage). `outcomes` supports **bold** markers,
++// rendered via renderBold(), used to highlight the metric in each line.
+ 
+ export const projectGroups = [
+   {
+@@ -15,20 +16,16 @@ export const projectGroups = [
+         company: 'Banxa (OSL Group)',
+         year: '2025 - Present',
+         description:
+-          'KYC, KYB, AML, and fraud decisioning platform spanning B2C and B2B channels for a leading crypto on/off-ramp. Owns the roadmap end to end, from onboarding conversion through to risk decisioning accuracy and third-party ecosystem integration.',
+-        responsibilities: [
+-          'Redesigned onboarding and risk decisioning flows through structured A/B experimentation and funnel analysis.',
+-          'Integrated and tuned third-party fraud and identity verification tooling (REST APIs, webhook pipelines) to cut manual review volume.',
+-          'Governed the integration roadmap with identity, fraud, and crypto liquidity providers, including **API contracts, OAuth 2.0 authentication, payload schemas, and rate-limiting**.',
+-          'Monitors global regulatory and fraud trends to maintain platform compliance while preserving a seamless user experience.',
+-          'Leads a team of 7, including 2 direct reports, across product and delivery.'
+-        ],
+-        tech: ['KYC/KYB Platforms', 'AML Tooling', 'OAuth 2.0', 'Amplitude', 'API Management', 'Webhooks'],
++          'Fiat-to-crypto and crypto-to-fiat on/off-ramp platform. Own the roadmap for KYC, KYB, AML, and fraud decisioning across B2C and B2B channels, while expanding the platform\u2019s supported coins, tokens, and DEX integrations to grow buy and sell coverage.',
+         outcomes: [
+-          { value: '5-10%', label: 'Onboarding conversion uplift' },
+-          { value: '20-30%', label: 'Fewer manual KYC/AML reviews' },
+-          { value: '15-25%', label: 'Faster approval turnaround' }
+-        ]
++          '**+5-10%** onboarding conversion from redesigned decisioning flows.',
++          '**-20-30%** manual KYC/AML reviews via tuned fraud and identity tooling.',
++          '**-10-15%** false positive fraud flags.',
++          '**-15-25%** faster approval turnaround.',
++          'Expanded platform\u2019s buy/sell coverage through new coin and token listings.',
++          'Integrated multiple DEXs into the platform, navigating a lengthy compliance review process while still hitting fast go-to-market targets for each new listing.'
++        ],
++        tech: ['KYC/KYB Platforms', 'AML Tooling', 'OAuth 2.0', 'Amplitude', 'API Management', 'Webhooks']
+       }
+     ]
+   },
+@@ -41,41 +38,25 @@ export const projectGroups = [
+         year: '2023 - 2025',
+         description:
+           'Product strategy and delivery for payments, wallets, and crypto integrations at a regulated FX and CFD broker. Defined the roadmap for a payments-first platform, integrating multiple PSPs and building webhook-driven event pipelines.',
+-        responsibilities: [
+-          'Defined product vision and roadmap for a payments-first platform, integrating multiple PSPs and designing reconciliation flows.',
+-          'Introduced LLM-based transaction summarisation and anomaly detection (Azure OpenAI + RAG), improving transparency and reducing fraud investigation volume.',
+-          'Led an internal AI support assistant, shaped by Amplitude-driven usage analysis, that **cut payment & wallet query handling time by 30%**.',
+-          'Ran ways-of-working and Agile training sessions for the broader team, improving delivery consistency.',
+-          'Conducted market research and competitive analysis, and ran customer interviews and feedback loops to validate roadmap direction.',
+-          'Led a team of 14, including 7 direct reports, across Product, Engineering, Compliance, and Marketing.'
+-        ],
+-        tech: ['PSP Integration', 'Webhook Pipelines', 'Azure OpenAI', 'RAG', 'Amplitude', 'REST APIs'],
+         outcomes: [
+-          { value: '30%', label: 'Faster payment & wallet query handling' },
+-          { value: '14', label: 'Team led, including 7 direct reports' }
+-        ]
++          '**-30%** payment and wallet support query handling time after AI support assistant launch.',
++          'Team scaled to **14**, including 7 direct reports, to support platform growth.',
++          'Delivered multiple PSP integrations with reconciliation flows, reducing manual finance reconciliation effort.'
++        ],
++        tech: ['PSP Integration', 'Webhook Pipelines', 'Azure OpenAI', 'RAG', 'Amplitude', 'REST APIs']
+       },
+       {
+         name: 'PropTradeTech Onboarding & Compliance Platform',
+         company: 'Eightcap Pty. Ltd. (PropTradeTech)',
+         year: '2023',
+         description:
+-          'Greenfield B2B white-label prop trading platform and end-to-end prop trading operations management solution, built within Eightcap. Owned product scope end to end, taking the first client from kickoff to go-live in under four months.',
+-        responsibilities: [
+-          'Defined product scope, roadmap, and success metrics for a net-new B2B SaaS platform inside an existing regulated business.',
+-          'Acted as Development Lead across full-stack delivery, personally responsible for solution design, development, and testing, while leading a team of developers, solution designers, and testers through effort estimation, code reviews, and stakeholder updates.',
+-          'Integrated **SumSub KYC** via a webhook flow with an idempotent state machine and compliance audit logging.',
+-          'Integrated **Stripe Payments** and crypto payment providers, including checkout sessions, payment intents, and webhook reconciliation.',
+-          'Directed the build of an AI-powered onboarding chatbot, including flow design, tone, and escalation paths to human support.',
+-          'Worked closely with support, finance, and risk teams to integrate systems that automated previously manual processes.',
+-          'Used ProductBoard and ClickUp for backlog prioritisation and delivery management.'
+-        ],
+-        tech: ['SumSub KYC', 'Stripe', 'Azure OpenAI', 'RAG', 'ProductBoard', 'ClickUp', 'React', '.NET Core'],
++          'Greenfield B2B white-label prop trading platform and end-to-end prop trading operations management solution, built within Eightcap.',
+         outcomes: [
+-          { value: '35%', label: 'Fewer support tickets after chatbot launch' },
+-          { value: '22%', label: 'Higher onboarding completion rate' },
+-          { value: '<4 mo', label: 'Kickoff to first client go-live' }
+-        ]
++          '**-35%** support tickets after AI onboarding chatbot launch.',
++          '**+22%** onboarding completion rate.',
++          '**Under 4 months** from kickoff to first client go-live for a greenfield B2B platform.'
++        ],
++        tech: ['SumSub KYC', 'Stripe', 'Azure OpenAI', 'RAG', 'ProductBoard', 'ClickUp', 'React', '.NET Core']
+       }
+     ]
+   },
+@@ -88,13 +69,10 @@ export const projectGroups = [
+         year: '2020 - 2023',
+         description:
+           "Product Owner and delivery lead for Latitude Financial Services' credit card application and customer onboarding initiatives, supporting digital transformation across acquisition and servicing workflows.",
+-        responsibilities: [
+-          'Architected Azure Integration Services solutions for payment event orchestration and core banking API integration via REST/SOAP.',
+-          'Configured APIM policies for rate-limiting, authentication, and versioning across integration endpoints.',
+-          'Contributed to measurable reductions in application processing time and manual intervention rates.'
++        outcomes: [
++          'Reduced manual intervention and processing time across the credit card application and onboarding workflow.'
+         ],
+-        tech: ['Azure Integration Services', 'API Management', 'REST/SOAP', 'Core Banking APIs'],
+-        outcomes: []
++        tech: ['Azure Integration Services', 'API Management', 'REST/SOAP', 'Core Banking APIs']
+       },
+       {
+         name: 'BOQ Digital Banking Platform',
+@@ -102,38 +80,32 @@ export const projectGroups = [
+         year: '2020 - 2023',
+         description:
+           "Product and integration delivery for Bank of Queensland's digital banking platform, improving customer-facing digital workflows.",
+-        responsibilities: [
+-          'Contributed integration and delivery work within the broader Azure Integration Services engagement.',
+-          'Collaborated cross-functionally to improve customer-facing digital banking workflows.'
++        outcomes: [
++          'Improved customer-facing digital banking workflows through integration delivery.'
+         ],
+-        tech: ['Azure Integration Services', 'REST/SOAP'],
+-        outcomes: []
++        tech: ['Azure Integration Services', 'REST/SOAP']
+       },
+       {
+         name: "Westpac Loans Application",
+         company: 'Clear Dynamics Pty. Ltd.',
+         year: '2020 - 2023',
+         description:
+-          "Product scoping and integration delivery for Westpac's loans application workflow, improving end-to-end processing efficiency.",
+-        responsibilities: [
+-          'Scoped integration requirements for the loans application workflow.',
+-          'Delivered integration work improving end-to-end processing efficiency.'
++          "Product scoping and integration delivery for Westpac's loans application workflow.",
++        outcomes: [
++          'Improved end-to-end loan application processing efficiency.'
+         ],
+-        tech: ['Azure Integration Services', 'REST/SOAP'],
+-        outcomes: []
++        tech: ['Azure Integration Services', 'REST/SOAP']
+       },
+       {
+         name: 'RMIT Student Application Platform',
+         company: 'Clear Dynamics Pty. Ltd.',
+         year: '2020 - 2023',
+         description:
+-          'Streamlined student application management platform for RMIT, reducing administrative processing time and improving applicant completion rates.',
+-        responsibilities: [
+-          'Defined product scope for a student application management platform.',
+-          'Streamlined application workflows, reducing administrative processing time and improving completion rates.'
++          'Streamlined student application management platform for RMIT.',
++        outcomes: [
++          'Reduced administrative processing time and improved applicant completion rates.'
+         ],
+-        tech: ['Azure Integration Services', 'REST/SOAP'],
+-        outcomes: []
++        tech: ['Azure Integration Services', 'REST/SOAP']
+       },
+       {
+         name: 'Scoot Education Tutoring Platform (Teachstart)',
+@@ -141,13 +113,10 @@ export const projectGroups = [
+         year: '2020 - 2023',
+         description:
+           'MVP scope and delivery lead for a tutoring and education platform for Scoot Education, integrating scheduling, payments, and tutor onboarding workflows.',
+-        responsibilities: [
+-          'Defined MVP scope for a tutoring and education platform.',
+-          'Integrated scheduling, payments, and tutor onboarding workflows.',
++        outcomes: [
+           'Improved tutor-to-student matching speed and platform adoption post-launch.'
+         ],
+-        tech: ['Scheduling Systems', 'Payments Integration', 'Azure Integration Services'],
+-        outcomes: []
++        tech: ['Scheduling Systems', 'Payments Integration', 'Azure Integration Services']
+       }
+     ]
+   },
+@@ -159,14 +128,12 @@ export const projectGroups = [
+         company: 'AMP',
+         year: '2019 - 2020',
+         description:
+-          "Senior Software Engineer on the AMP North Online IT team, building automated business workflows that replaced manual handoffs and reduced processing latency across the investment platform.",
+-        responsibilities: [
+-          "Designed and built integration workflows enabling real-time portfolio data processing for AMP's Managed Portfolios.",
+-          'Automated a previously manual, sensitive deceased-customer policy workflow end to end, reducing handling time and operational risk.',
+-          'Built a structured request tracking and fulfilment system, improving SLA visibility and reducing manual coordination overhead.'
++          "Senior Software Engineer on the AMP North Online IT team, building automated business workflows across the investment platform.",
++        outcomes: [
++          'Reduced manual handling and processing latency for portfolio data and deceased-customer policy workflows.',
++          'Improved SLA visibility through structured request tracking.'
+         ],
+-        tech: ['Azure Logic Apps', 'Service Bus', '.NET Core'],
+-        outcomes: []
++        tech: ['Azure Logic Apps', 'Service Bus', '.NET Core']
+       }
+     ]
+   },
+@@ -179,18 +146,12 @@ export const projectGroups = [
+         year: '2017 - 2019',
+         description:
+           'Sole owner of the end-to-end XPlan (Iress) integration, plus the broader integration layer connecting Myprosperity to Netwealth, BGL, Class, and HUB24, consolidating multi-platform portfolio data into a single client view.',
+-        responsibilities: [
+-          'Led requirements analysis, API discovery, technical design, build, and production delivery for the XPlan integration end to end.',
+-          'Designed data normalisation pipelines and OAuth-based authentication across custodian APIs, managing API versioning and deprecation.',
+-          'Diagnosed and resolved a race condition between valuation refresh cycles and transaction history APIs, eliminating client-facing data inconsistencies.',
+-          'Adapted data models and UI components for multi-currency and multi-region use, supporting expansion into new markets.'
+-        ],
+-        tech: ['REST', 'SOAP/XML', 'OAuth', 'Automapper', '.NET Core', 'SQL'],
+         outcomes: [
+-          { value: '5', label: 'Platforms unified into one client view' },
+-          { value: '0', label: 'Client-facing data inconsistencies post-fix' },
+-          { value: '1', label: 'New market unlocked via localisation' }
+-        ]
++          '**5** platforms unified into a single client view (XPlan, Netwealth, BGL, Class, HUB24).',
++          '**0** client-facing data inconsistencies after resolving the valuation/transaction race condition.',
++          '**1** new market unlocked through multi-currency and multi-region localisation.'
++        ],
++        tech: ['REST', 'SOAP/XML', 'OAuth', 'Automapper', '.NET Core', 'SQL']
+       }
+     ]
+   }
+diff --git a/src/pages/projects.astro b/src/pages/projects.astro
+index f2089ab..da6aad1 100644
+--- a/src/pages/projects.astro
++++ b/src/pages/projects.astro
+@@ -11,9 +11,8 @@ import { renderBold } from '../lib/markdown.js';
+     <p class="eyebrow">Selected Work</p>
+     <h1 class="name" style="font-size:clamp(34px,5vw,52px);">Projects</h1>
+     <p class="summary">
+-      Projects across every company on the Career Ledger, grouped by engagement.
+-      Some entries (particularly at Clear Dynamics) are light on detail for now
+-      and will be expanded over time.
++      Projects across every company on the Career Ledger, grouped by engagement,
++      framed around outcomes rather than day-to-day responsibilities.
+     </p>
+   </section>
+ 
+@@ -34,10 +33,10 @@ import { renderBold } from '../lib/markdown.js';
+             <p class="project-desc">{p.description}</p>
+ 
+             <div>
+-              <p class="project-subhead">Key Responsibilities</p>
++              <p class="project-subhead">Outcomes &amp; Impact</p>
+               <ul class="project-resp">
+-                {p.responsibilities.map((r) => (
+-                  <li set:html={renderBold(r)} />
++                {p.outcomes.map((o) => (
++                  <li set:html={renderBold(o)} />
+                 ))}
+               </ul>
+             </div>
+@@ -50,17 +49,6 @@ import { renderBold } from '../lib/markdown.js';
+                 ))}
+               </div>
+             </div>
+-
+-            {p.outcomes && p.outcomes.length > 0 && (
+-              <div class="project-outcomes">
+-                {p.outcomes.map((o) => (
+-                  <div class="outcome">
+-                    <div class="o-value">{o.value}</div>
+-                    <div class="o-label">{o.label}</div>
+-                  </div>
+-                ))}
+-              </div>
+-            )}
+           </div>
+         ))}
+       </div>
+diff --git a/src/styles/global.css b/src/styles/global.css
+index 937b661..6642ec8 100644
+--- a/src/styles/global.css
++++ b/src/styles/global.css
+@@ -279,10 +279,6 @@ footer .fine{ text-align:center; margin-top:44px; font-family:var(--mono); font-
+   border-radius:6px; color:var(--text); background:var(--surface-2);
+ }
+ 
+-.project-outcomes{ display:flex; flex-wrap:wrap; gap:18px; padding-top:16px; border-top:1px solid var(--line-soft); }
+-.outcome{ min-width:120px; }
+-.outcome .o-value{ font-family:var(--mono); font-size:19px; font-weight:600; color:var(--signal); }
+-.outcome .o-label{ font-size:12px; color:var(--muted); line-height:1.4; margin-top:2px; }
+ 
+ @media (prefers-reduced-motion: reduce){
+   *{ animation:none !important; transition:none !important; }
+-- 
+2.43.0
+

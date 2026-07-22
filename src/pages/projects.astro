@@ -8,10 +8,11 @@ import { renderBold } from '../lib/markdown.js';
   description="Projects from Aditya Sunil Nair's work in fintech, payments, compliance, and enterprise integration delivery."
 >
   <section class="projects-hero" id="top">
-    <p class="eyebrow">Work Experience</p>
+    <p class="eyebrow">Selected Work</p>
     <h1 class="name" style="font-size:clamp(34px,5vw,52px);">Projects</h1>
     <p class="summary">
-      Projects across every company on the Career Ledger, grouped by engagement.
+      Projects across every company on the Career Ledger, grouped by engagement,
+      framed around outcomes rather than day-to-day responsibilities.
     </p>
   </section>
 
@@ -32,10 +33,10 @@ import { renderBold } from '../lib/markdown.js';
             <p class="project-desc">{p.description}</p>
 
             <div>
-              <p class="project-subhead">Key Responsibilities</p>
+              <p class="project-subhead">Outcomes &amp; Impact</p>
               <ul class="project-resp">
-                {p.responsibilities.map((r) => (
-                  <li set:html={renderBold(r)} />
+                {p.outcomes.map((o) => (
+                  <li set:html={renderBold(o)} />
                 ))}
               </ul>
             </div>
@@ -48,17 +49,6 @@ import { renderBold } from '../lib/markdown.js';
                 ))}
               </div>
             </div>
-
-            {p.outcomes && p.outcomes.length > 0 && (
-              <div class="project-outcomes">
-                {p.outcomes.map((o) => (
-                  <div class="outcome">
-                    <div class="o-value">{o.value}</div>
-                    <div class="o-label">{o.label}</div>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         ))}
       </div>
