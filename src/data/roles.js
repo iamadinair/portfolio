@@ -20,7 +20,7 @@ export const roles = [
   {
     tenure: 'May 2023 - Oct 2025',
     company: 'Eightcap Pty. Ltd.',
-    title: 'Product Manager (incl. PropTradeTech project)',
+    title: 'Product Manager (incl. PropTradeTech)',
     current: false,
     bullets: [
       'Owned product strategy for payments, wallets, and crypto integrations at a regulated FX and CFD broker, spanning multiple PSPs, reconciliation flows, and webhook-driven event pipelines, leading a team of 14, including 7 direct reports.',
