@@ -12,7 +12,7 @@ export const projectGroups = [
     company: 'Banxa (OSL Group)',
     projects: [
       {
-        name: 'Onboarding & Compliance Platform',
+        name: 'Crypto On/Off-Ramp: Onboarding & Compliance',
         company: 'Banxa (OSL Group)',
         year: '2025 - Present',
         description:
@@ -46,7 +46,7 @@ export const projectGroups = [
         tech: ['PSP Integration', 'Webhook Pipelines', 'Azure OpenAI', 'RAG', 'Amplitude', 'REST APIs']
       },
       {
-        name: 'PropTradeTech Onboarding & Compliance Platform',
+        name: 'PropTradeTech: End-to-End B2B Prop Trading Platform',
         company: 'Eightcap Pty. Ltd. (PropTradeTech)',
         year: '2023',
         description:
