@@ -23,7 +23,7 @@ export const projectGroups = [
           '**-10-15%** false positive fraud flags.',
           '**-15-25%** faster approval turnaround.',
           'Expanded platform\u2019s buy/sell coverage through new coin and token listings.',
-          'Integrated multiple DEXs into the platform, navigating a lengthy compliance review process while still hitting fast go-to-market (**GTM**) targets for each new listing.'
+          'Integrated multiple **DEXs** into the platform, navigating a lengthy compliance review process while still hitting fast go-to-market (**GTM**) targets for each new listing.'
         ],
         tech: ['KYC/KYB Platforms', 'AML Tooling', 'OAuth 2.0', 'Amplitude', 'API Management', 'Webhooks']
       }
