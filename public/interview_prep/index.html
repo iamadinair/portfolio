@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Azupay Senior PM Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0f1c;
+    --surface: #121a2b;
+    --surface-2: #182238;
+    --border: #263353;
+    --text: #e7ecf7;
+    --text-dim: #93a0c0;
+    --text-faint: #5f6c8d;
+    --accent: #4ade80;
+    --accent-dim: #1f6b45;
+    --flag: #f5b942;
+    --flag-bg: rgba(245, 185, 66, 0.1);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { padding-bottom: 60px; }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(10, 15, 28, 0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 24px 14px;
+  }
+  .title-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    max-width: 980px; margin: 0 auto 6px; flex-wrap: wrap; gap: 6px 16px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 600; margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .role-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .progress-row {
+    max-width: 980px; margin: 0 auto 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .progress-track {
+    flex: 1; height: 5px; border-radius: 6px;
+    background: var(--border); overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; width: 0%; background: var(--accent);
+    transition: width 0.25s ease;
+  }
+  .progress-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    color: var(--text-faint); white-space: nowrap;
+  }
+  .search-wrap {
+    max-width: 980px; margin: 0 auto; position: relative;
+  }
+  #search {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    padding: 12px 42px 12px 16px;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  #search:focus { border-color: var(--accent); }
+  #search::placeholder { color: var(--text-faint); }
+  .search-icon {
+    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--text-faint); pointer-events: none; font-size: 15px;
+  }
+  .clear-btn {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--text-faint);
+    cursor: pointer; font-size: 18px; padding: 4px 6px; display: none;
+  }
+  .clear-btn.show { display: block; }
+  .result-count {
+    max-width: 980px; margin: 8px auto 0; font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: var(--text-faint); display: none;
+  }
+  .result-count.show { display: block; }
+
+  .tabs {
+    max-width: 980px; margin: 14px auto 0;
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    transition: all 0.15s;
+  }
+  .tab-btn:hover { border-color: var(--text-dim); color: var(--text); }
+  .tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #05170c;
+    font-weight: 500;
+  }
+
+  main { max-width: 980px; margin: 0 auto; padding: 28px 24px 0; }
+
+  .category-block { margin-bottom: 34px; }
+  .category-block.hidden { display: none; }
+  .category-heading {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 600;
+    margin: 0 0 14px;
+    color: var(--text);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .category-heading::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .qa-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .qa-card.hidden { display: none; }
+  .qa-card.done .qa-question { color: var(--text-faint); text-decoration: line-through; text-decoration-color: var(--border); }
+  .qa-card.done .qa-answer { color: var(--text-faint); }
+
+  .qa-card .cat-label {
+    display: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  body.searching .qa-card .cat-label { display: block; }
+
+  .card-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 12px;
+  }
+  .qa-question {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600; font-size: 15px;
+    color: var(--text); margin: 0 0 8px;
+    line-height: 1.4; flex: 1;
+  }
+  .qa-answer {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--text-dim); margin: 0;
+  }
+  .practice {
+    flex: 0 0 auto;
+    display: flex; align-items: center; gap: 5px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px;
+    color: var(--text-faint); cursor: pointer; user-select: none;
+    margin-top: 1px;
+  }
+  .practice input { width: 14px; height: 14px; accent-color: var(--accent); cursor: pointer; }
+
+  .flag {
+    display: inline-block;
+    background: var(--flag-bg);
+    color: var(--flag);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .flag-note {
+    margin-top: 12px;
+    background: var(--flag-bg);
+    border: 1px solid rgba(245, 185, 66, 0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    color: var(--flag);
+    line-height: 1.5;
+  }
+  mark {
+    background: rgba(74, 222, 128, 0.28);
+    color: var(--text);
+    border-radius: 3px;
+    padding: 0 1px;
+  }
+
+  .intro-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 26px;
+  }
+
+  .no-results {
+    text-align: center; padding: 60px 20px; color: var(--text-faint);
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; display: none;
+  }
+  .no-results.show { display: block; }
+
+  footer.tip {
+    max-width: 980px; margin: 30px auto 0; padding: 16px 24px 0;
+  }
+  .tip-box {
+    padding: 16px 20px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 16px 12px; }
+    main { padding: 24px 16px 0; }
+    footer.tip { padding: 24px 16px 0; }
+    h1 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title-row">
+    <h1>Azupay &mdash; Senior PM Interview</h1>
+    <span class="role-tag">Panel: CPO + 2</span>
+  </div>
+  <div class="progress-row">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-label" id="progressLabel">0 / 0 practiced</span>
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Search questions, answers, or keywords&hellip;" autocomplete="off">
+    <span class="search-icon" id="searchIcon">&#8981;</span>
+    <button class="clear-btn" id="clearBtn">&times;</button>
+  </div>
+  <div class="result-count" id="resultCount"></div>
+  <div class="tabs" id="tabs"></div>
+</div>
+
+<main id="main">
+  <div class="no-results" id="noResults">No matches. Try a different keyword.</div>
+</main>
+
+<footer class="tip">
+  <div class="tip-box">This is a chemistry check as much as a competency check with a three-person panel. Fine to let a couple of the "Questions I'll Ask" come up naturally mid-conversation rather than saving them all for the end. Every amber-flagged card needs your real details filled in before the interview, especially the ones about why you're leaving Banxa and your notice period and salary, those are near-certain to come up.</div>
+</footer>
+
+<script>
+const DATA = [
+  // ---------- YOUR PITCH ----------
+  {
+    category: "Your Pitch",
+    intro: true,
+    question: "Tell me about yourself",
+    answer: `Thanks for having me. A bit about my background: I'm a product manager with about 11 years of experience, and what makes me a bit different is that I started out as a software engineer, so I still write code and get hands-on when it makes sense, rather than just handing everything to engineering.
+
+Right now I'm at Banxa, part of OSL Group, where I own onboarding for our fiat-to-crypto on/off-ramp platform, from the UI and UX through to the compliance logic behind it. I work closely with Compliance and Legal on our KYC, KYB and fraud posture, and just as closely with Marketing and Support on how onboarding actually feels for real users, since a compliance-safe flow that nobody completes doesn't help either side. One of the things I've built is a workflow that automatically determines which compliance tier a user falls into based on inputs like location, transaction volume and transaction count, rather than everyone going through the same manual review path. A lot of what I do day to day comes down to judgement, figuring out whether a problem needs a proper engineering build, or whether it can be solved faster, just as safely, through configuration, workflow automation, or AI. Instead of every tuning change going through a full engineering sprint, I worked with our identity and fraud vendors directly, reconfiguring decisioning rules and webhook-driven workflows myself, which took manual reviews down by 20 to 30 percent and cut false positives by roughly 10 to 15 percent, without needing custom development for most of it.
+
+I've also used AI and low-code tooling to actually build things myself, not just write requirements for someone else to build. At Banxa I use ChatGPT and Claude daily to accelerate PRD creation, workflow design and documentation, and I use Claude Code to run code reviews and check that what's actually been built matches the requirements doc, which has materially cut our discovery-to-delivery time.
+
+Before Banxa, I was at Eightcap, a regulated FX and CFD trading broker, where I ran end-to-end product management across the trading platform itself, not just a single slice of it. That included integrating multiple payment service providers, Stripe, Checkout.com and Worldpay, so traders could fund and withdraw smoothly across different rails, building out KYC and KYB tooling as part of onboarding, and working closely with Marketing, Support and Account Management on activation and retention, not just Engineering and Compliance.
+
+Alongside that, I ran a greenfield project called PropTradeTech, a B2B prop trading solution we built and sold to partner firms. I joined at inception, when it was still just an idea, and owned it end to end, working directly with the C-suite and leading development teams across two different countries to take it from zero to market in about four months. Once we went live, scaling became the real story, we onboarded three to four new partner firms every week, consistently, for about six months. It involved integrating with trading platforms like MT4, MT5, cTrader and DXtrade, and building a real-time dashboard so users could track their trading challenges and trades as they happened. I was development lead as well as product owner on that one, personally responsible for solution design, development and testing, while running effort estimation, code reviews and stakeholder updates across the team. I built out the SumSub KYC integration myself, including the webhook flow and compliance audit logging, and the Stripe side, checkout sessions, payment intents and webhook reconciliation, alongside integrating crypto payment providers like CoinPayments and NOWPayments. I also worked closely with support, finance and risk to automate processes that had been manual up to that point, and we deployed an AI-powered onboarding chatbot as part of it, which cut support ticket volume by about 35 percent and lifted onboarding completion rates by 22 percent.
+
+Before that, I spent a couple of years at Clear Dynamics in a Product Owner and Delivery Lead role, working across a number of client projects: credit card application and onboarding for Latitude Financial Services, Bank of Queensland's digital banking platform, Westpac's loans application, a student applications platform for RMIT, and a tutoring and education platform for Scoot Education. A lot of that work was actually low-code delivery in practice, architecting solutions on Azure Logic Apps, Service Bus and API Management, which are low-code integration platforms, while still owning the product side. It's really the same muscle this role is asking for, just applied to Azure connectors instead of fintech workflows.
+
+If you look at my career overall, wealth platforms at Myprosperity and AMP, FX and CFD trading at Eightcap, and now crypto payments at Banxa, the pattern isn't really about any one domain, it's that I keep moving into new regulated, technical spaces and getting comfortable fast. So I think what I'd bring to this role is that same domain agility, plus the comfort moving between strategic roadmap work, detailed analysis and hands-on delivery, and the cross-functional experience working with Engineering, Compliance, Legal, and Commercial and Support teams to actually get it live.`
+  },
+  {
+    category: "Your Pitch",
+    intro: true,
+    question: "Condensed version (~90 seconds, for actually saying out loud)",
+    answer: `I'm a product manager with about 11 years across fintech, payments and SaaS, and I started as a software engineer, so I still get hands-on rather than just writing requirements.
+
+At Banxa I own onboarding end to end for our crypto on and off ramp, UI, UX and the compliance logic behind it, working closely with Compliance, Legal, Marketing and Support. A lot of it comes down to judgement, deciding whether something needs a proper build or can be solved through configuration or automation, like a workflow I built that auto-determines a user's compliance tier from location and transaction behaviour instead of manual review every time.
+
+Before that, at Eightcap, I ran end-to-end product for the whole trading platform, and built PropTradeTech alongside it, a B2B prop trading platform I took from inception to market in four months, working with the C-suite and leading teams across two countries. Once live, we onboarded three to four partner firms a week for about six months.
+
+Earlier, at Clear Dynamics, I delivered banking projects on Azure Logic Apps, genuinely low-code work, just for a different industry.
+
+The pattern across all of it, wealth, FX, payments, crypto, is that I move into new regulated domains fast. That's what I'd bring here: the judgement to pick the right lever, and the cross-functional range to get it live.`
+  },
+
+  // ---------- HR & SCREENING ----------
+  {
+    category: "HR & Screening",
+    question: "Tell me about yourself (short version)",
+    answer: `I'm a product manager with about 11 years of experience across fintech, payments and SaaS, and I started out as a software engineer before moving into product, which is still a big part of how I work today. Right now I'm at Banxa owning onboarding end to end, UI, UX and the compliance logic behind it, KYC, KYB and fraud decisioning, working closely with Compliance and Legal, and a lot of that comes down to exactly the kind of call this role needs: deciding whether something's a configuration change, an automation, or a proper engineering build. Before that I was at Eightcap, a regulated FX and CFD broker, where I ran end-to-end product management across the whole trading platform, and ran a greenfield B2B platform called PropTradeTech from inception, where I was both product owner and development lead, working with the C-suite and leading teams across two countries to get it to market in about four months. I'm looking at Azupay because it's real-time, account-to-account payments in Australia, which is close to what I already do, and because the role clearly wants someone who'll get hands-on rather than just write requirements, which is how I like to work anyway.`
+  },
+  {
+    category: "HR & Screening",
+    question: "Why are you interested in this role, and why Azupay?",
+    answer: `Real-time, account-to-account payments is the direction the whole market's heading, and Azupay's right at the centre of that with PayID and PayTo on the NPP. I've spent my career in regulated payments, wealth platforms, FX, and now crypto, and what's consistent across all of it is translating a messy, multi-party problem into something that actually ships. What specifically drew me to this role is that it's not a pure strategy seat, it wants someone who'll get into SaaS configuration and automation themselves rather than just handing everything to engineering, and that's genuinely how I already operate at Banxa and how I operated at PropTradeTech.`
+  },
+  {
+    category: "HR & Screening",
+    question: "You've been at Banxa a relatively short time. Why are you looking to leave?",
+    flag: true,
+    answer: `I've valued my time at Banxa and the compliance depth it's given me, but I'm looking for a role where I can apply that experience somewhere with [insert your real reason, for example more ownership across the whole product surface, a smaller team where impact is more visible, or closer alignment to core payments rails]. I'm not moving away from something, I'm moving toward this.`,
+    flagNote: `Personalize this: replace the bracket with your honest reason before the interview. Keep it forward-looking and don't critique Banxa or OSL Group, this is close to guaranteed to come up given your tenure.`
+  },
+  {
+    category: "HR & Screening",
+    question: "What's your notice period and availability to start?",
+    flag: true,
+    answer: `My notice period is [X weeks], so I could realistically start by [approximate date].`,
+    flagNote: `Personalize this: confirm your actual contractual notice period, typically 2 to 4 weeks in Australia unless your contract states otherwise.`
+  },
+  {
+    category: "HR & Screening",
+    question: "What are your salary expectations?",
+    flag: true,
+    answer: `Based on my research, senior product manager roles in Melbourne and Sydney typically sit somewhere between $150,000 and $195,000 base, depending on scope and company size. I'm targeting around [your number] given my experience, but I care more about the right fit, so I'm happy to keep that conversation open as we both get more confident this is the right match.`,
+    flagNote: `Personalize this: insert your real target, ideally anchored against your current package. The range quoted is a general Melbourne/Sydney market reference, not a script for the actual number.`
+  },
+  {
+    category: "HR & Screening",
+    question: "Do you have full working rights in Australia?",
+    flag: true,
+    answer: `[Answer honestly, confirm your citizenship or working rights status here], happy to provide any documentation you need.`,
+    flagNote: `Personalize this: confirm your actual status before the interview. This JD doesn't explicitly require citizenship, but it's a standard screening question for an Australian-based role and worth having a clean, immediate answer ready.`
+  },
+  {
+    category: "HR & Screening",
+    question: "What's a strength of yours?",
+    answer: `Probably that I sit naturally between product and engineering. I've worked as both a product owner and a hands-on developer, on PropTradeTech I was literally both at once, so I can make the call on whether something needs configuration, automation, or a real build, and then actually help build it if that's the fastest path.`
+  },
+  {
+    category: "HR & Screening",
+    question: "What's a weakness or growth area?",
+    answer: `Structured, formal user research. Most of my research has come through close collaboration with operations, support and compliance teams, plus usage data and funnel analysis, rather than a dedicated research practice. It's worked well so far, but it's an area I'd like to build out further with more deliberate customer discovery, especially somewhere like Azupay where you're serving quite different verticals, government, billers, banks, businesses, that probably each need their own read.`
+  },
+  {
+    category: "HR & Screening",
+    question: "Tell me about a conflict with a colleague or stakeholder and how you resolved it.",
+    answer: `Coin and token expansion at Banxa is a good example. Compliance wanted a thorough review process, Commercial wanted new listings live fast for go-to-market reasons, and the two were genuinely pulling in different directions.
+
+Rather than treating it as a standoff, I started by mapping out the actual token approval process end to end, what happened at each step, who owned it, and how long it actually took, since nobody had it properly documented. That gave me a clear picture of where the real bottlenecks were and which parts were genuinely fixed versus just slow out of habit.
+
+From there it was about finding where I could speed things up without cutting corners on review. Two things made the biggest difference: running compliance review in parallel with engineering development instead of sequentially after it, and building a structured onboarding form for whoever was requesting a new listing, which fed directly into automated workflows instead of someone manually chasing information back and forth. That turned a stand-off between Compliance and Commercial into a shared, sequenced plan, and gave both sides visibility into where things actually stood.`,
+    flagNote: `This is now built from your real process work, mapping the approval flow, finding automation gaps, running review in parallel with engineering, and the onboarding form. If you have a rough sense of how much time that took off the process, even a ballpark, it's worth adding, a number makes this land harder in the room.`
+  },
+  {
+    category: "HR & Screening",
+    question: "Where do you see yourself in three to five years?",
+    answer: `I want to keep growing as a product leader who can move fluidly between strategy and hands-on delivery, and I could see that heading toward a Head of Product or Group PM type role where I'm setting direction across a few product domains rather than owning just one. Given this role already asks for someone comfortable moving between domains, that's a big part of what draws me to it.`
+  },
+  {
+    category: "HR & Screening",
+    question: "Tell me about a time you failed, and what you learned.",
+    flag: true,
+    answer: `Early on with the fraud and risk decisioning work at Banxa, I underestimated how long a tightened rule needed to be validated before going fully live, and it pushed false positives higher than expected for a couple of weeks before we caught it in the data and rolled it back. What I learned is to always ship risk-decisioning changes behind a smaller initial exposure or a shadow-mode test first, rather than trusting a prediction over real production data, it's a principle I've applied to every release since.`,
+    flagNote: `Check this matches reality: this is a plausible scenario built from your resume, not a confirmed event. Swap in your own real failure story if this isn't what actually happened, interviewers often ask a follow-up question here.`
+  },
+
+  // ---------- JUDGEMENT & TECHNICAL ----------
+  {
+    category: "Judgement & Technical",
+    question: "Tell me about a time you had to decide between a low-code or configuration fix versus a custom engineering build. How did you make that call?",
+    answer: `At Banxa, our KYC, KYB and AML decisioning sits on top of a few third-party identity and fraud platforms that already expose rule configuration and webhooks. When we needed to cut down manual review volume, I didn't push for a new engineering-built rules engine. I went into the vendor platforms directly and reworked the decisioning rules and webhook flows myself, which took manual reviews down by 20 to 30 percent and false positives by roughly 10 to 15 percent.
+
+Compare that to our onboarding conversion work, where the fix wasn't just rule tuning, it needed changes to the actual onboarding flow and how we captured and passed data to those same vendors. That one needed proper engineering involvement, and it delivered a 5 to 10 percent uplift in conversion and cut approval turnaround by 15 to 25 percent.
+
+The way I draw the line is whether the platform I'm working with already exposes the lever I need. If it's a config or rule change, I'll do it myself. If it touches the user-facing flow or the data model, it goes to engineering.`
+  },
+  {
+    category: "Judgement & Technical",
+    question: "Give me an example of a workflow you designed yourself, end to end.",
+    answer: `At Banxa I built a workflow that automatically determines which compliance tier a user falls into, based on inputs like their location, transaction volume and transaction count, rather than every user going through the same manual review path. Before that, tiering decisions leaned heavily on manual judgement calls from the compliance team. I worked with Compliance and Legal to define the logic and thresholds, then implemented it as a configuration-driven workflow on top of our existing vendor tooling rather than a bespoke engineering build, since the underlying platform already exposed the inputs I needed. It meant lower-risk users could move through onboarding faster while higher-risk profiles still got the scrutiny they needed, without the compliance team manually triaging every single case.`
+  },
+  {
+    category: "Judgement & Technical",
+    question: "Have you ever chosen the low-code path and regretted it, or built something when you probably should have configured it? What did you learn?",
+    flag: true,
+    answer: `This is a good one to have a specific, honest story ready for rather than a general answer, interviewers tend to notice when this gets dodged.
+
+A structure that tends to land well: what you chose, what you thought you'd save, what you actually found out once you were in it, and how you corrected course. If nothing comes to mind immediately, think about the coin and token listings work at Banxa, cases where compliance review timelines meant a config-only approach wasn't fast enough and needed more structural change. Worth turning that into a two or three sentence story before the interview.`
+  },
+  {
+    category: "Judgement & Technical",
+    question: "How do you weigh speed against scalability and long-term maintainability when picking a solution?",
+    answer: `I look at how many times this decision is likely to get exercised and by whom. The PSP integration work I did at Eightcap is a good example: integrating multiple payment service providers through REST APIs, building out data mapping, reconciliation flows and webhook event handling. That was going to run continuously and touch every transaction, so I pushed for that to be a proper engineered, tested integration rather than a quick fix, even though it took longer up front.
+
+Compare that to the onboarding conversion work at Banxa, which was more about rapid experimentation through A/B testing, so I favoured configuration and fast iteration there because the cost of being wrong for a week was low and reversible.`
+  },
+  {
+    category: "Judgement & Technical",
+    question: "Walk me through a specific example of building something yourself with AI or low-code tools, not just writing requirements for someone else.",
+    answer: `Day to day at Banxa, I use ChatGPT and Claude to accelerate PRD creation, workflow design and documentation, and I use Claude Code to run code reviews, checking that what's actually been built matches the requirements doc rather than just trusting the ticket got closed. That's materially cut our discovery-to-delivery turnaround. I also run a weekly product showcase focused specifically on AI, where I share what's genuinely working and push adoption of these tools across the wider team, so it's not just me using them in isolation.`
+  },
+  {
+    category: "Judgement & Technical",
+    question: "What's your comfort level reading and writing code today, and where do you draw the line between doing it yourself and handing it to an engineer?",
+    answer: `I came up as a software engineer before moving into product, working in .NET Core, React and Azure Integration Services, so I can read and write code comfortably. On PropTradeTech at Eightcap, a greenfield B2B prop trading platform we built in under four months, I was both product owner and development lead. I personally built parts of the SumSub KYC integration, including the webhook flow, and parts of the Stripe payment flow, checkout sessions, payment intents and webhook reconciliation, while also leading the team through estimation and code review.
+
+The line I draw now is about risk and scale. If it's a script, a prompt workflow, or a config change I can test and roll back easily, I'll do it myself. If it's going into a production path handling real user funds at scale, it needs a proper engineering owner, code review and QA, even if I wrote the first draft.`
+  },
+  {
+    category: "Judgement & Technical",
+    question: "How do you keep your technical skills sharp while operating as a PM?",
+    answer: `Partly by staying hands-on with the tools I mentioned, Claude, ChatGPT, Claude Code, and partly because my roles keep pulling me back into the technical detail. At Clear Dynamics I was architecting Azure Integration Services solutions, Logic Apps, Service Bus, API Management, for clients like Latitude Financial Services and Bank of Queensland, and at AMP I was a senior software engineer building automated workflows for the AMP North platform. That foundation means when I'm reviewing an integration design now, I can actually engage with it, not just take engineering's word for it.`
+  },
+
+  // ---------- XP & DELIVERY ----------
+  {
+    category: "XP & Delivery",
+    question: "What does good backlog hygiene look like to you in a fast-moving, XP-style environment?",
+    answer: `On PropTradeTech I used ProductBoard and ClickUp to manage backlog prioritisation and delivery, and because I was also acting as development lead, I was doing effort estimation and code reviews alongside the team, not just writing stories and handing them off. Good hygiene to me means stories are small enough to estimate confidently, acceptance criteria are specific enough that QA and I agree on done before the sprint starts, and the backlog reflects current priority, not a running list of everything anyone has ever asked for.`
+  },
+  {
+    category: "XP & Delivery",
+    question: "How do you handle a situation where engineers disagree with your prioritisation or story breakdown?",
+    answer: `At Eightcap I ran ways-of-working and Agile training sessions for the wider team, partly because I found disagreements about prioritisation are often really disagreements about what we're optimising for, not the ranking itself. My approach is to get the disagreement on the table early, usually in refinement, and go back to the outcome the story is meant to drive. If an engineer has a technical reason a different sequence reduces risk or effort, I'll usually take that over my own ordering, since they can see cost and dependencies I can't.`
+  },
+  {
+    category: "XP & Delivery",
+    question: "Describe how you work day to day with engineers, not just at planning, but in the detail.",
+    answer: `PropTradeTech is the clearest example. I was product owner and development lead on that at the same time, so I was in the code with the team, doing solution design, development and testing myself, while also running effort estimation, code reviews and stakeholder updates. We integrated SumSub KYC and Stripe payments and got the first client live in under four months. That dual role meant when engineers hit a technical constraint, I understood it well enough to adjust scope or sequencing in real time instead of waiting for a translated explanation.`
+  },
+  {
+    category: "XP & Delivery",
+    question: "Tell me about a time you had to move forward on an ambiguous problem with limited direction.",
+    answer: `PropTradeTech was exactly that. I joined when it was still just an idea, a B2B prop trading solution we planned to sell to partner firms, so there wasn't an established playbook to follow. I had to define the MVP scope myself, decide the KYC and payments architecture, SumSub and Stripe, and get development teams moving across two different countries, all while working directly with the C-suite and owning delivery myself. We got the first client live in under four months, which only happens if you're comfortable making calls without waiting for someone above you to hand you a fully-formed plan.`
+  },
+  {
+    category: "XP & Delivery",
+    question: "How do you know when to escalate versus when to just decide and act?",
+    answer: `I think about reversibility and blast radius. Reworking decisioning rules inside a vendor platform at Banxa is something I can change again next week if it's wrong, so I just do it and monitor the outcome. Something that changes a regulatory posture or a customer-facing commitment, I'll loop in the right people first, because getting that wrong is expensive and slow to unwind. Most of my day-to-day decisions sit in the first category, which is why I can move without escalating constantly.`
+  },
+  {
+    category: "XP & Delivery",
+    question: "Tell me about a time you had to work closely with a peer or a small team on something ambiguous, under time pressure.",
+    answer: `PropTradeTech again. I was leading development teams across two different countries on a B2B platform we were building from scratch with no existing playbook, so a lot of it came down to trusting people's calls rather than needing everything signed off before moving, and being deliberate about communication given the team wasn't all in one place. We kept going back to the client for feedback throughout rather than guessing at what they needed, which is as much about how you work with people as it is about handling ambiguity. We got the first client live in under four months. If I'm honest about what I'd do differently, I'd bring that client feedback loop in even earlier next time, we validated direction well once we started, but the first couple of weeks were more assumption-driven than I'd like.`
+  },
+
+  // ---------- PRIORITIZATION FRAMEWORKS ----------
+  {
+    category: "Prioritization Frameworks",
+    question: "Walk me through how you actually prioritize, from an executive conversation down to what engineering picks up.",
+    answer: `I use a different framework depending on how far along the decision is, rather than one framework for everything.
+
+At the top, when I'm working through high-level requirements with the C-suite or other executives, I use MoSCoW, must-have, should-have, could-have, won't-have-this-time. It's a fast, shared language for what's actually non-negotiable versus what's nice to have, without getting into implementation detail too early.
+
+Once that's roughly settled, when I'm bringing it to engineering for initial sizing, I use t-shirt sizing, small, medium, large, extra-large, to get a fast, low-precision read on relative effort before anyone burns time on a proper estimate.
+
+Once a piece of work is actually defined and picked up into the backlog, I move to RICE and ICE to score individual initiatives against each other, and value versus effort as a quick visual gut-check alongside them.
+
+I've used this same sequence at both Eightcap and Banxa. It scales down to a quick weekly triage and up to a full quarterly roadmap conversation.`
+  },
+  {
+    category: "Prioritization Frameworks",
+    question: "How do you use MoSCoW, and when?",
+    flag: true,
+    answer: `MoSCoW is where I start with executives and the C-suite, sorting requirements into must-have, should-have, could-have, and won't-have-this-time. It's less about precision and more about getting fast alignment on what's actually non-negotiable before anyone starts scoping solutions, which matters most when you're in a room with people who don't want to sit through a detailed backlog conversation.`,
+    flagNote: `Add a real example: a specific requirements conversation at Eightcap or Banxa where MoSCoW helped you get executive alignment, ideally one where something you expected to be a "must" turned out to be a "could," or vice versa.`
+  },
+  {
+    category: "Prioritization Frameworks",
+    question: "How do you use t-shirt sizing?",
+    flag: true,
+    answer: `Once priorities are roughly set with the business side, I bring the list to engineering and get a t-shirt size, small, medium, large, extra-large, on each item before committing to anything with a stakeholder. It's deliberately low-precision, the point is to catch anything that's secretly an extra-large before it gets promised as a quick win, not to produce a real estimate this early.`,
+    flagNote: `Add a real example: a case at Eightcap or Banxa where t-shirt sizing caught something that looked small but was actually large, or the reverse, before it went further into the process.`
+  },
+  {
+    category: "Prioritization Frameworks",
+    question: "How do you use RICE?",
+    flag: true,
+    answer: `RICE scores initiatives on Reach, how many users or transactions it touches, Impact, how much it moves the needle for each of them, Confidence, how sure I am about the reach and impact numbers, divided by Effort. I use it once a set of initiatives are actually defined and competing for the same sprint or quarter, since it forces a number onto things that would otherwise just be argued on gut feel.`,
+    flagNote: `Add a real example: two initiatives at Eightcap or Banxa that both looked important, and how their RICE scores actually settled the call, ideally one where the outcome surprised you.`
+  },
+  {
+    category: "Prioritization Frameworks",
+    question: "How do you use ICE, and how is it different from RICE?",
+    flag: true,
+    answer: `ICE is Impact, Confidence and Effort, the same idea as RICE but without Reach. I reach for it when Reach is hard to quantify cleanly, an internal tooling change, for instance, or when I need a quick relative ranking in a working session rather than a fully defensible score for a roadmap document. It's faster to run but less rigorous, so I treat it as the lightweight version for day-to-day triage rather than for a decision I'll need to justify to leadership later.`,
+    flagNote: `Add a real example: a fast triage moment at Eightcap or Banxa where ICE was the right level of rigour, versus a bigger decision where you'd have reached for RICE instead.`
+  },
+  {
+    category: "Prioritization Frameworks",
+    question: "How do you use value versus effort?",
+    flag: true,
+    answer: `Value versus effort is a simple two-by-two, plotting initiatives by how much value they create against how much effort they take, quick wins, big bets, fill-ins, and time sinks. I use it as a visual gut-check alongside RICE or ICE, especially in conversations with non-technical stakeholders where a quadrant chart lands faster than a table of scores. It's rougher than RICE, but it's genuinely useful for spotting the time sinks nobody's noticed yet, work that's high effort and low value but has just been running on inertia.`,
+    flagNote: `Add a real example: a case at Eightcap or Banxa where plotting things on value versus effort surfaced something that should have been deprioritised or killed, but hadn't been.`
+  },
+
+  // ---------- CROSS-FUNCTIONAL & LEADERSHIP ----------
+  {
+    category: "Cross-Functional & Leadership",
+    question: "Tell me about a project where you had to align Product, Engineering, Risk, Legal and Commercial, and they didn't agree.",
+    answer: `Coin and token expansion at Banxa is a good example. Growing our buy and sell coverage and integrating new DEXs meant navigating a fairly lengthy compliance review process, while Commercial wanted new listings live as fast as possible for go-to-market reasons. I worked directly with Compliance, Risk and Legal to understand where the review timeline was fixed versus where there was flexibility, and worked with Engineering on what could be built or configured in parallel with review rather than after it. That let us keep hitting fast GTM targets on each listing without compromising the review itself.`
+  },
+  {
+    category: "Cross-Functional & Leadership",
+    question: "How do you influence outcomes in domains you don't directly own, like Risk or Legal, when you need something from them?",
+    answer: `Mostly by bringing them data and options early rather than a finished plan. On the fraud reduction programme at Banxa, I integrated and tuned third-party fraud and identity tools through REST APIs and webhook pipelines, which cut manual reviews by 20 to 30 percent and false positives by roughly 10 to 15 percent. None of that happens without Risk and Compliance agreeing the new thresholds are sound, so I brought them into the tuning process itself rather than asking for sign-off on something I'd already decided.`
+  },
+  {
+    category: "Cross-Functional & Leadership",
+    question: "Give an example of supporting another PM's domain, or covering outside your usual area.",
+    flag: true,
+    answer: `I don't have a clean, direct example of formally covering another PM's domain to point to right now, so this one's worth preparing a specific story for if you've got one, even something informal like stepping in during a teammate's leave or filling a gap during a reorg.
+
+If nothing comes to mind, the closest adjacent example is from Clear Dynamics: being an active member of the mentorship group there, training new joiners across both product and engineering and building the onboarding materials for them. It's more about capability-building across the team than domain coverage, but it shows the same instinct to help beyond your own patch.`
+  },
+  {
+    category: "Cross-Functional & Leadership",
+    question: "This role reports directly into the CPO. How do you approach communicating with senior leadership, and how does that differ from how you work with engineers day to day?",
+    answer: `At Eightcap I reported into both the CEO and CTO, so I was used to switching between a commercial, growth-focused conversation and a technical one, sometimes in the same day. With engineers I go deep into the how, sequencing, trade-offs, technical constraints. With leadership I lead with the outcome and the number, then only go into mechanism if they ask. At Banxa, reporting into the CPO, it's a similar dynamic, whatever I bring to leadership is backed by funnel data and actual decisioning outcomes rather than a gut feel, and I'd expect that same discipline to matter here given how lean the team is.`
+  },
+  {
+    category: "Cross-Functional & Leadership",
+    question: "Tell me about your experience mentoring or growing people on your team.",
+    answer: `At Eightcap I mentored a few people on the team while I was there, which I really enjoyed, it's a different muscle to just building the roadmap yourself, and it made me a lot more deliberate about explaining the why behind a decision, not just the what. Earlier, at Clear Dynamics, I was an active member of the mentorship group, training new joiners across both product and engineering and building onboarding materials and instructional videos for them. Given this role expects me to move across domains and sometimes cover for other PMs, I'd expect that same instinct, bringing people along rather than just executing solo, to matter a lot here.`
+  },
+
+  // ---------- REGULATED & PAYMENTS ----------
+  {
+    category: "Regulated & Payments",
+    question: "What's your experience with payments regulation and enterprise customer needs?",
+    answer: `It spans most of my career. At Banxa I own onboarding end to end for a crypto on/off-ramp, working closely with Compliance and Legal on KYC, KYB and fraud, including building a workflow that determines a user's compliance tier based on location, transaction volume and transaction count. At Eightcap, a regulated FX and CFD broker, I ran end-to-end product management across the trading platform, including multiple payment provider integrations and KYC and KYB tooling. Before that, at Clear Dynamics, I worked on the credit card application and onboarding platform for Latitude Financial Services, contributed to Bank of Queensland's digital banking platform, and worked on Westpac's loans application. So I've seen regulated payments from a few different angles, crypto, FX, and traditional banking, which helps me spot where enterprise customer expectations and regulatory constraints are going to collide early.`
+  },
+  {
+    category: "Regulated & Payments",
+    question: "How do you approach compliance-heavy workflows where speed and rigour are in tension?",
+    answer: `The onboarding conversion work at Banxa is a good example. We redesigned onboarding and risk decisioning flows through A/B testing and funnel analysis, and got a 5 to 10 percent uplift in conversion alongside a 15 to 25 percent reduction in approval turnaround time, without loosening the actual compliance checks. The way I approach it is to separate the user experience from the underlying control. Often the control itself isn't what's slow, it's how much friction we've bolted onto it. If I can streamline the experience around a check without touching the check itself, I get speed without touching rigour.`
+  },
+  {
+    category: "Regulated & Payments",
+    question: "You haven't worked with the NPP, PayID or PayTo specifically before. How would you get up to speed on Azupay's rails?",
+    answer: `I haven't worked with the NPP specifically, but I've ramped into new regulated payment rails before with no prior background, moving from consumer wealth platforms into FX and CFD trading at Eightcap, then into crypto and digital assets at Banxa, picking up coin and token listings and DEX integrations along the way, each with their own regulatory shape. I'd take the same approach here: get close to engineering and the API docs early, sit with support and onboarding teams to see where real friction shows up for billers, banks and businesses, and lean on people who already know PayID and PayTo rather than assuming my payments background transfers one-to-one.`
+  },
+  {
+    category: "Regulated & Payments",
+    question: "What's your experience with payment aggregators and different payment rails?",
+    answer: `I haven't owned the payments side directly at Banxa, that sits with a dedicated payments product manager, but I've worked alongside them closely enough to build a working understanding of it. We use a mix of providers, Stripe, Checkout.com, BVNK, Primer, Spreedly and Bridge, and between them we cover a few different rails, PayID, open banking, SEPA and ACH. Being close to that work has given me a decent picture of how routing and provider choice plays out across different regions and payment types, and how orchestration and tokenisation platforms like Primer and Spreedly sit on top of individual PSPs, even though the day-to-day ownership and any performance numbers sit with that team rather than with me.`
+  },
+
+  // ---------- PAYMENT RAILS & PROVIDERS (reference notes) ----------
+  {
+    category: "Payment Rails & Providers",
+    reference: true,
+    question: "PayID & PayTo (Australia's New Payments Platform)",
+    answer: `PayID is essentially an addressing layer sitting on top of the NPP. It lets someone pay you using something memorable, an email, phone number, or ABN, instead of needing your BSB and account number. It doesn't move money itself, it just resolves that alias to the underlying bank account, and the actual transfer happens over the NPP in real time.
+
+PayTo is different, it replaces the direct debit and recurring-card model. Instead of a merchant silently pulling funds on a card, the payer authorises a payment agreement inside their own banking app, and future payments are initiated in real time against that agreement, with the payer able to see, pause, or cancel it directly. It's built to solve the classic direct debit problems: failed payments, stale card details, and a lack of visibility for the payer.
+
+Underneath both sits the NPP itself, Australia's real-time payments rail, which settles in seconds and runs 24/7, unlike the older BECS batch network, which can take a business day or more to clear.`
+  },
+  {
+    category: "Payment Rails & Providers",
+    reference: true,
+    question: "Open Banking (CDR in Australia, PSD2 in Europe)",
+    answer: `Open banking is a regulatory framework that lets a customer authorise sharing of their own banking data, and in some markets initiate payments directly, with accredited third parties, rather than the bank holding all of that access on its own. In Australia it's called the Consumer Data Right, and it started with read access to account and transaction data, useful for things like income verification and affordability checks, with payment initiation capability developing over time.
+
+In Europe, PSD2 covers similar ground through two categories of licensed providers, AISPs for account information and PISPs for payment initiation, which is what lets a merchant trigger a direct bank transfer instead of routing through a card network.`
+  },
+  {
+    category: "Payment Rails & Providers",
+    reference: true,
+    question: "SEPA (Single Euro Payments Area)",
+    answer: `SEPA standardises euro-denominated bank transfers and direct debits across around three dozen European countries, so a payment between two SEPA countries behaves like a domestic transfer instead of a cross-border one. SEPA Credit Transfer typically settles within a business day, while SEPA Instant Credit Transfer settles in seconds and is available around the clock. SEPA Direct Debit works similarly to PayTo conceptually, a mandate authorises a merchant to pull funds, though without the same real-time visibility and control the payer gets with PayTo.`
+  },
+  {
+    category: "Payment Rails & Providers",
+    reference: true,
+    question: "ACH (United States)",
+    answer: `ACH is the batch-based bank transfer network used across the US for things like payroll, bill pay, and B2B payments. Standard ACH settlement traditionally takes one to three business days, though Same Day ACH now exists for faster settlement at a higher cost. It supports both credits, pushing funds out, and debits, pulling funds in, and debit-side transactions need the same kind of authorisation or mandate that direct debit and PayTo require.`
+  },
+  {
+    category: "Payment Rails & Providers",
+    reference: true,
+    question: "How providers like Stripe, Checkout.com and BVNK typically integrate",
+    answer: `Card-focused PSPs like Stripe and Checkout.com generally expose a REST API and SDKs, tokenising card details so the merchant never has to store raw card numbers, which keeps PCI-DSS scope down. A transaction usually moves through a payment intent or checkout session object that represents its lifecycle, and the provider pushes state changes, succeeded, failed, disputed, back to the merchant through webhooks rather than the merchant polling for status. Most also bundle in fraud tooling like 3D Secure and risk scoring as part of the integration.
+
+Crypto and stablecoin infrastructure providers like BVNK and Bridge work on a similar API and webhook pattern, but the underlying rail is different, they're handling on and off ramping between fiat and stablecoins, and settlement, rather than card networks. Bridge was acquired by Stripe, which says something about how seriously stablecoin settlement rails are being treated as a complement to traditional card and bank rails.
+
+Account-to-account rails like PayID, PayTo, open banking, SEPA and ACH aren't something a merchant typically connects to directly, they're usually accessed through an aggregator that's already a participant in that network, which is effectively what Azupay does for the NPP. That aggregator abstracts the complexity of the underlying rail and exposes a simpler API and webhook model to the merchant, a similar developer experience to a card PSP, but settling to bank accounts instead of card rails.
+
+Where a business is running multiple providers at once, which is the situation I've seen at Banxa across Stripe, Checkout.com, BVNK and Bridge, there's usually an orchestration layer sitting on top that routes each transaction to the right provider based on cost, success rate, region or rail availability, and normalises everyone's webhooks into one internal event model so the rest of the business doesn't need to care which provider actually processed it.`
+  },
+  {
+    category: "Payment Rails & Providers",
+    reference: true,
+    question: "Orchestration and tokenisation layers: Primer and Spreedly",
+    answer: `Primer and Spreedly are both orchestration-layer platforms rather than PSPs themselves. Primer sits above multiple PSPs and payment methods, so a merchant integrates once and can then route transactions across different providers, and build workflows for retries, fraud checks and failover, without touching code for every provider swap.
+
+Spreedly works on a similar orchestration idea but leans more into tokenisation. A merchant tokenises card details once into Spreedly's vault, then can route that same token to different underlying gateways depending on cost, region or a provider outage, without re-collecting card data each time.
+
+Both exist because businesses running multiple PSPs at once, like the mix I've seen at Banxa, end up needing that orchestration layer anyway, so platforms like Primer and Spreedly package it as a product rather than every company building it themselves.`
+  },
+
+  // ---------- AI & GENAI ----------
+  {
+    category: "AI & GenAI",
+    question: "Tell me about your experience incorporating AI into product development.",
+    answer: `A few concrete examples: an AI-powered onboarding chatbot at PropTradeTech that cut support ticket volume by about 35 percent and lifted onboarding completion by 22 percent; RAG-based transaction intelligence and anomaly detection at Eightcap that improved fraud transparency and reduced investigation volume; and an internal LLM support assistant at Eightcap that cut payment and wallet query handling time by 30 percent. Day to day at Banxa I use ChatGPT and Claude to speed up PRD creation, workflow design and documentation, and Claude Code to review what's been built against the requirements doc, and I run a weekly product showcase focused specifically on AI to push adoption across the team. Given this role wants someone who'll actually use AI to design and deliver solutions themselves, that's already how I operate.`
+  },
+  {
+    category: "AI & GenAI",
+    question: "What limitations or risks have you seen when implementing AI features, especially in a regulated environment?",
+    answer: `The main risk is over-trusting model output where accuracy has compliance consequences. In fraud or AML decisioning, an AI flag still needs a human-in-the-loop review path rather than full automation, because a false positive or false negative carries real regulatory and customer-trust cost. I've also seen RAG-based systems need careful scoping of source data, otherwise they can surface stale or out-of-context information with confidence. The principle I apply is to use AI to accelerate analysis and cut manual load, but keep a human decision point wherever the cost of being wrong is high, which I'd expect applies directly to payment and compliance decisions here too.`
+  },
+  {
+    category: "AI & GenAI",
+    question: "How do you stay current on AI and low-code tooling, and how do you decide what's worth adopting versus hype?",
+    answer: `I use it in production, not just read about it. Daily use of ChatGPT and Claude at Banxa for PRD creation, workflow design and documentation, plus Claude Code for reviewing what's actually been built against the requirements doc, is how I test whether a tool actually earns its place. I run a weekly AI-focused product showcase where the team shares what's genuinely saved time versus what looked good in a demo but didn't hold up. If it doesn't measurably cut discovery-to-delivery time or reduce manual work, I don't keep pushing it.`
+  },
+
+  // ---------- OUTCOMES & CULTURE ----------
+  {
+    category: "Outcomes & Culture",
+    question: "How do you personally measure whether a product initiative was a success?",
+    answer: `I run quarterly OKR planning and review cycles at Banxa, and I track NPS alongside qualitative onboarding feedback so roadmap priorities stay tied to actual customer and business outcomes, not just what shipped. Underneath that, I lean on tools like Amplitude and Mixpanel to run funnel analysis and A/B tests, which at Eightcap and Banxa delivered feature performance uplifts in the 5 to 12 percent range. If a metric didn't move, I don't count it as a win regardless of how much got delivered.`
+  },
+  {
+    category: "Outcomes & Culture",
+    question: "Tell me about a time you shipped something on time that didn't actually move the metric you cared about.",
+    flag: true,
+    answer: `This is one worth answering with a real story rather than something generic, interviewers tend to notice when this one's dodged. Have a think about whether there's a feature from Eightcap or Banxa that launched cleanly but underperformed against your funnel or NPS targets, and what you changed afterwards. Even a small, honest example lands better here than a polished one that sounds rehearsed.`
+  },
+  {
+    category: "Outcomes & Culture",
+    question: "Azupay is small enough that individual contributions are highly visible. How do you feel about that level of exposure?",
+    answer: `I'm used to it. At Banxa I lead a team of seven with two direct reports, and on PropTradeTech I was personally accountable for the technical delivery as development lead, not just the product outcome, reporting directly to the C-suite on a project that had to go from inception to market in under four months. I'd rather my work be visible and attributable than diffused across a big team, it's part of why I still like staying hands-on.`
+  },
+  {
+    category: "Outcomes & Culture",
+    question: "What kind of environment do you do your best work in, and where have you struggled?",
+    flag: true,
+    answer: `The first half you can answer confidently: you've consistently sought out roles that move between strategic and hands-on work, Banxa, Eightcap and Clear Dynamics all have that shape.
+
+The "where have you struggled" half is worth having a genuine, specific answer ready for, a rehearsed non-answer is easy to spot here. Think of a real environment or working style that's been harder for you, big-company process-heavy settings, highly siloed teams, whatever's true, and have one honest sentence ready on what you do to manage it.`
+  },
+
+  // ---------- QUESTIONS I'LL ASK ----------
+  {
+    category: "Questions I'll Ask",
+    question: "On the config vs build balance",
+    answer: `With a lean team, how does the balance actually play out day to day between platform configuration and automation versus a proper engineering build? Is it fairly even, or does it lean one way?`
+  },
+  {
+    category: "Questions I'll Ask",
+    question: "On product direction",
+    answer: `You've built out Pay by Bank through PayID and PayTo on the NPP, and it looks like passkeys and account verification are a growing part of the story. Is the next stretch mostly about deepening those rails, or opening up new payment types and verticals?`
+  },
+  {
+    category: "Questions I'll Ask",
+    question: "On domain coverage",
+    answer: `The role mentions contributing across product domains and covering other PMs when needed. What does that actually look like in practice, planned rotation, or more ad hoc depending on where the pressure is that quarter?`
+  },
+  {
+    category: "Questions I'll Ask",
+    question: "On the biggest gap",
+    answer: `What's the biggest manual or inefficient process right now that nobody's had the bandwidth to properly fix yet?`
+  },
+  {
+    category: "Questions I'll Ask",
+    question: "On the first 90 days",
+    answer: `If I started in this role, what's the one thing you'd want me to get right in the first 90 days?`
+  }
+];
+
+const categories = [...new Set(DATA.map(d => d.category))];
+const main = document.getElementById('main');
+const tabsEl = document.getElementById('tabs');
+const noResults = document.getElementById('noResults');
+const resultCount = document.getElementById('resultCount');
+
+let activeCategory = categories[0];
+categories.forEach(cat => {
+  const btn = document.createElement('button');
+  btn.className = 'tab-btn' + (cat === activeCategory ? ' active' : '');
+  btn.textContent = cat;
+  btn.dataset.cat = cat;
+  btn.addEventListener('click', () => {
+    activeCategory = cat;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+    renderTabs();
+  });
+  tabsEl.appendChild(btn);
+});
+
+function paragraphs(text) {
+  return text.trim().split(/\n\s*\n/).map(p => `<p class="qa-answer">${p.trim()}</p>`).join('');
+}
+
+let cardIndex = 0;
+categories.forEach(cat => {
+  const block = document.createElement('div');
+  block.className = 'category-block';
+  block.dataset.cat = cat;
+
+  const heading = document.createElement('h2');
+  heading.className = 'category-heading';
+  heading.textContent = cat;
+  block.appendChild(heading);
+
+  DATA.filter(d => d.category === cat).forEach(item => {
+    cardIndex++;
+    const card = document.createElement('div');
+    card.className = 'qa-card';
+    card.dataset.question = item.question.toLowerCase();
+    card.dataset.answer = item.answer.toLowerCase();
+    card.dataset.cat = cat;
+    card.id = 'card-' + cardIndex;
+
+    let inner = `<div class="cat-label">${cat}</div>`;
+    inner += `<div class="card-top">`;
+    if (item.intro) {
+      inner += `<div class="qa-question" style="font-family:'Fraunces',serif;font-size:18px;">${item.question}</div>`;
+    } else if (item.reference) {
+      inner += `<div class="qa-question">${item.question}</div>`;
+    } else {
+      inner += `<div class="qa-question">${item.question}</div>`;
+      inner += `<label class="practice"><input type="checkbox" data-card="${card.id}"> done</label>`;
+    }
+    inner += `</div>`;
+    if (item.flag) inner += `<div class="flag">Personalize this one</div>`;
+    inner += paragraphs(item.answer);
+    if (item.flagNote) inner += `<div class="flag-note">${item.flagNote}</div>`;
+    card.innerHTML = inner;
+    block.appendChild(card);
+  });
+
+  main.appendChild(block);
+});
+
+function renderTabs() {
+  document.querySelectorAll('.category-block').forEach(block => {
+    block.classList.toggle('hidden', block.dataset.cat !== activeCategory);
+  });
+}
+renderTabs();
+
+// Progress tracking
+const progressFill = document.getElementById('progressFill');
+const progressLabel = document.getElementById('progressLabel');
+function updateProgress() {
+  const boxes = document.querySelectorAll('.practice input[type="checkbox"]');
+  const total = boxes.length;
+  const done = document.querySelectorAll('.practice input[type="checkbox"]:checked').length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  progressFill.style.width = pct + '%';
+  progressLabel.textContent = done + ' / ' + total + ' practiced';
+}
+document.querySelectorAll('.practice input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const card = document.getElementById(cb.dataset.card);
+    if (card) card.classList.toggle('done', cb.checked);
+    updateProgress();
+  });
+});
+updateProgress();
+
+// Search
+const searchInput = document.getElementById('search');
+const clearBtn = document.getElementById('clearBtn');
+
+function runSearch() {
+  const q = searchInput.value.trim().toLowerCase();
+  const isSearching = q.length > 0;
+  document.body.classList.toggle('searching', isSearching);
+  clearBtn.classList.toggle('show', isSearching);
+  tabsEl.style.display = isSearching ? 'none' : 'flex';
+
+  if (!isSearching) {
+    resultCount.classList.remove('show');
+    noResults.classList.remove('show');
+    document.querySelectorAll('.category-block').forEach(block => block.classList.remove('hidden'));
+    renderTabs();
+    document.querySelectorAll('.qa-card').forEach(c => c.classList.remove('hidden'));
+    return;
+  }
+
+  document.querySelectorAll('.category-block').forEach(block => block.classList.remove('hidden'));
+
+  let matchCount = 0;
+  document.querySelectorAll('.qa-card').forEach(card => {
+    const matches = card.dataset.question.includes(q) || card.dataset.answer.includes(q);
+    card.classList.toggle('hidden', !matches);
+    if (matches) matchCount++;
+  });
+
+  document.querySelectorAll('.category-block').forEach(block => {
+    const visibleCards = block.querySelectorAll('.qa-card:not(.hidden)');
+    block.classList.toggle('hidden', visibleCards.length === 0);
+  });
+
+  resultCount.textContent = matchCount + (matchCount === 1 ? ' match' : ' matches');
+  resultCount.classList.add('show');
+  noResults.classList.toggle('show', matchCount === 0);
+}
+
+searchInput.addEventListener('input', runSearch);
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  runSearch();
+  searchInput.focus();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === '/' && document.activeElement !== searchInput) {
+    e.preventDefault();
+    searchInput.focus();
+  }
+  if (e.key === 'Escape' && document.activeElement === searchInput) {
+    searchInput.value = '';
+    runSearch();
+    searchInput.blur();
+  }
+});
+</script>
+</body>
+</html>

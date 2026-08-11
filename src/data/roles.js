@@ -8,7 +8,7 @@ export const roles = [
     current: true,
     bullets: [
       'Own end-to-end delivery for **KYC, KYB, AML, and fraud decisioning** across B2C and B2B channels for a leading crypto on/off-ramp platform, leading a team of 7, including 2 direct reports.',
-      'Grew the platform\u2019s buy/sell coverage by adding new coins and tokens, and integrated multiple DEXs, navigating a lengthy compliance review process while still hitting fast go-to-market (**GTM**) targets for each listing.',
+      'Grew the platform\u2019s buy/sell coverage by adding new coins and tokens, and integrated multiple **DEXs**, navigating a lengthy compliance review process while still hitting fast go-to-market (**GTM**) targets for each listing.',
       'Redesigned onboarding and risk decisioning flows through A/B experimentation, contributing a **5–10% conversion uplift** and **~15–25% faster approval turnaround**.',
       'Tuned third-party fraud & identity verification tooling, **cutting manual reviews by 20–30%** and **false positives by ~10–15%**.',
       'Governed the integration roadmap with identity, fraud, and crypto liquidity providers, including API contracts, OAuth 2.0 authentication, and rate-limiting, lifting transaction fulfilment rates by ~10–20%.',
