@@ -177,6 +177,27 @@
     font-size: 14.5px; line-height: 1.65;
     color: var(--text-dim); margin: 0;
   }
+  .qa-bullets {
+    margin: 0 0 14px;
+    padding: 12px 16px;
+    background: rgba(74, 222, 128, 0.06);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    border-radius: 10px;
+  }
+  .qa-bullets-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .qa-bullets ul {
+    margin: 0; padding-left: 18px;
+  }
+  .qa-bullets li {
+    font-size: 13.5px; line-height: 1.5;
+    color: var(--text); margin-bottom: 5px;
+  }
+  .qa-bullets li:last-child { margin-bottom: 0; }
   .practice {
     flex: 0 0 auto;
     display: flex; align-items: center; gap: 5px;
@@ -594,6 +615,13 @@ I've used this same sequence at both Eightcap and Banxa. It scales down to a qui
     category: "Round 2: Tech Ops & CTO",
     reference: true,
     question: "Context for this round",
+    bullets: [
+      "Panel is the Head of Tech Ops and the CTO, explicitly technical",
+      "They want to see real tool skill, not just hear me describe process",
+      "Core focus: AI automation that takes manual work off the ops team",
+      "Tools mentioned: JIRA (tickets), HubSpot (CRM), Maxio (billing)",
+      "Most manual pain usually lives in the gaps between these three systems"
+    ],
     answer: `This round is with the Head of Tech Ops and the CTO, and it's explicitly technical, they want to see how good I actually am with the tools, not just hear me describe process in the abstract. The core thing they're screening for is AI automation experience specifically, building automations that take manual work off the ops team's plate, not just using AI to draft documents or summarise things.
 
 The tools they've mentioned are JIRA, HubSpot and Maxio. That combination points at a fairly standard ops stack: JIRA for internal ticketing and delivery tracking, HubSpot for CRM, sales and marketing workflows, and Maxio for subscription billing and revenue operations, invoicing, dunning, revenue recognition. A lot of the manual pain in that kind of stack usually lives in the gaps between those three systems, a support ticket in JIRA that should trigger a HubSpot follow-up, a billing failure in Maxio that should open a JIRA ticket automatically, that kind of thing.`
@@ -602,6 +630,12 @@ The tools they've mentioned are JIRA, HubSpot and Maxio. That combination points
     category: "Round 2: Tech Ops & CTO",
     reference: true,
     question: "JIRA, HubSpot and Maxio: what they do and where automation usually lives",
+    bullets: [
+      "JIRA: issue and project tracking, REST API + webhooks, the usual automation entry point",
+      "HubSpot: CRM, sales and marketing, has its own workflow engine plus webhooks",
+      "Maxio: subscription billing and revenue ops, usually the first system to know something's gone wrong financially",
+      "Common pattern: a trigger fires, something enriches or classifies in the middle (often AI), then an API call updates another system"
+    ],
     answer: `JIRA is Atlassian's issue and project tracker, most ops and engineering teams use it for tickets, workflows and delivery tracking. It exposes a REST API and supports webhooks, so a ticket being created, transitioned, or commented on can trigger an external action, which is the usual entry point for automation.
 
 HubSpot is a CRM and marketing/sales platform, contacts, deals, tickets, email sequences, all wired together. It also has a REST API and a workflow automation engine of its own, plus webhooks that fire on property changes, deal stage moves, and so on. A lot of HubSpot automation work is about keeping HubSpot's view of a customer in sync with what's happening in other systems.
@@ -613,6 +647,13 @@ The common automation pattern across all three is the same: webhook or API trigg
   {
     category: "Round 2: Tech Ops & CTO",
     question: "How would you approach identifying and building an AI automation for a manual ops process?",
+    bullets: [
+      "Map the process first, before touching any tooling",
+      "Separate real judgement calls from repetitive lookup or data entry",
+      "Only the repetitive part gets automated",
+      "Decide: configure inside the existing tool, add an AI step, or build custom",
+      "Built this exact pattern before: chatbot at PropTradeTech, RAG tool + LLM assistant at Eightcap"
+    ],
     answer: `I'd start the same way I did with the compliance tiering workflow at Banxa: map the actual process end to end before touching any tooling, who does the manual step today, how often, and what decision they're actually making when they do it. A lot of "automate this" requests turn out to be someone doing a judgement call that genuinely needs a human, versus someone doing repetitive lookup and data entry that doesn't.
 
 Once I know which part is real automation territory, I look at whether it's a configuration or workflow-builder job inside the existing tools, JIRA automation rules, HubSpot workflows, versus something that needs an AI step in the middle, classification, summarisation, drafting, versus something that needs actual custom development because the logic is too specific for either. That's the same build-versus-configure judgement I apply everywhere else, just pointed at ops tooling instead of compliance or onboarding.
@@ -622,6 +663,13 @@ For the AI-specific pieces, I've built exactly this kind of thing before, an AI 
   {
     category: "Round 2: Tech Ops & CTO",
     question: "Have you worked with JIRA, HubSpot or Maxio specifically?",
+    bullets: [
+      "JIRA: extensive, set up and administered it at PropTradeTech and Eightcap",
+      "Configured issue types and workflows, ran migrations",
+      "Banxa uses ProductBoard and ClickUp instead",
+      "HubSpot: decent working familiarity, not my primary tool",
+      "Maxio: haven't used it hands-on, went deep on the docs beforehand and I'm upfront about that"
+    ],
     answer: `JIRA, extensively. I set up and administered JIRA at both PropTradeTech and Eightcap, the actual account setup, not just using it as an end user. That included configuring issue types and workflows, running migrations, and building out the workflow structures the teams used day to day. At Banxa we use ProductBoard and ClickUp instead, so JIRA is genuinely where my deepest, admin-level experience sits. If they want to get into the weeds on JIRA automation rules, custom fields, or workflow schemes, that's genuinely comfortable ground for me.
 
 HubSpot, I have decent working familiarity with, though it hasn't been my primary tool the way JIRA has.
@@ -632,6 +680,13 @@ Maxio I haven't used hands-on, and I'd rather be upfront about that than pretend
     category: "Round 2: Tech Ops & CTO",
     reference: true,
     question: "Proposed automation flow: Maxio to JIRA and HubSpot",
+    bullets: [
+      "A Maxio event (e.g. failed payment) fires a webhook",
+      "Orchestration layer enriches it and uses AI to classify and draft",
+      "Auto-acts if confident and low-risk",
+      "Routes to a person if unsure or the case matters a lot",
+      "Same pattern works in reverse, a JIRA or HubSpot event could be the trigger instead"
+    ],
     diagramSvg: `<svg width="100%" viewBox="0 0 680 376" role="img"><title>Proposed connective automation flow</title><desc>A Maxio billing event triggers an orchestration and AI layer that enriches and classifies it, then either auto-updates JIRA and HubSpot or routes to a human for review.</desc>
 <defs><marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
 <g class="c-gray"><rect x="210" y="40" width="260" height="56" rx="8" stroke-width="0.5"/><text class="th" x="340" y="58" text-anchor="middle" dominant-baseline="central">Maxio</text><text class="ts" x="340" y="76" text-anchor="middle" dominant-baseline="central">Billing or payment event</text></g>
@@ -648,19 +703,34 @@ Maxio I haven't used hands-on, and I'd rather be upfront about that than pretend
     category: "Round 2: Tech Ops & CTO",
     reference: true,
     question: "What the orchestration and AI layer actually does",
-    answer: `It does four things in sequence. First, normalise, Maxio, JIRA and HubSpot each send webhook payloads in a different shape, so the first job is converting whatever comes in into one common internal event structure, so nothing downstream needs to know or care which system it came from.
+    bullets: [
+      "Step 1: Pull the different systems' info into one simple, common format",
+      "Step 2: Add context, pull in related records so there's enough to act on",
+      "Step 3: AI reads it, drafts the ticket or note, and summarises the history",
+      "Step 4: If confident and low-risk, act automatically. If unsure or high-stakes, send it to a person",
+      "I've built this same pattern before: PropTradeTech's chatbot, Eightcap's fraud tool, Banxa's tiering workflow"
+    ],
+    answer: `It does four things, in order.
 
-Second, enrich, pull in context the raw event doesn't have. A Maxio billing failure alone doesn't tell you much, but pull the customer's HubSpot record and recent JIRA ticket history alongside it, and there's enough context to actually act on.
+First, it brings everything into one common format. Maxio, JIRA and HubSpot each send information in their own shape, so the first step is turning whatever comes in into one simple format everyone downstream can use.
 
-Third, classify and draft with AI, this is the step that actually saves someone time: classify urgency and type, draft the JIRA ticket body or the HubSpot note in natural language, summarise related history so whoever picks it up isn't starting from zero.
+Second, it adds context. On its own, a failed payment doesn't say much. Pull in the customer's HubSpot record and their recent JIRA tickets, and now there's enough to actually act on.
 
-Fourth, confidence-gated action, the AI step, or rules layered on top of it, produces a confidence signal that decides whether to auto-action or route to a human.
+Third, AI reads it and drafts something. This is the part that actually saves time, it works out how urgent or important something is, writes a first draft of the JIRA ticket or the HubSpot note, and summarises the history so whoever picks it up isn't starting from scratch.
 
-This is the same shape as things I've actually built before, not a new pattern for me: the AI onboarding chatbot at PropTradeTech classified and drafted responses, the RAG fraud tooling at Eightcap enriched and summarised transaction context for investigators, and the compliance tiering workflow at Banxa is exactly step four, rules-based branching on a classification.`
+Fourth, it decides who acts. If the AI's confident and the case is low-risk, it goes ahead and updates things automatically. If it's unsure, or the case really matters, it goes to a person instead of guessing.
+
+I've built this exact pattern before, just not on this stack. The AI onboarding chatbot at PropTradeTech, the fraud tool at Eightcap, and the compliance tiering workflow at Banxa are all versions of the same idea.`
   },
   {
     category: "Round 2: Tech Ops & CTO",
     question: "Have you built an integration or automation between two systems using their APIs or webhooks? Walk me through one.",
+    bullets: [
+      "PropTradeTech: built the SumSub KYC webhook handler and the Stripe webhook reconciliation",
+      "Eightcap: integrated Stripe, Checkout.com and Worldpay via their APIs, wired KYC/KYB to account activation",
+      "Banxa: reconfigured vendor webhook flows for compliance decisioning, cut manual reviews 20-30%",
+      "Same pattern every time: webhook fires, validate and normalise the payload, update state, decide the next action"
+    ],
     answer: `The clearest one is the SumSub KYC integration I built at PropTradeTech. SumSub fires a webhook whenever a user's verification status changes, submitted, approved, rejected, needs more info. I built the endpoint that received those webhooks, validated the payload, and updated the user's status in our system, then triggered whatever came next, unlocking the account, or flagging it for manual review if it came back rejected. I did the same thing on the Stripe side, listening for payment intent webhooks, succeeded, failed, disputed, and reconciling those against our internal records rather than trusting the initial API response alone, since payment state can change after the fact.
 
 At Eightcap it was a similar shape but on the payments side, integrating Stripe, Checkout.com and Worldpay via their APIs so traders could fund and withdraw across different rails, and wiring KYC and KYB verification status through to account activation automatically rather than someone manually checking and flipping a flag.
@@ -670,6 +740,13 @@ At Banxa, the clearest example is the compliance decisioning workflow, reconfigu
   {
     category: "Round 2: Tech Ops & CTO",
     question: "What does your actual workflow look like when you're using AI to build something?",
+    bullets: [
+      "Write down the requirement first: trigger, expected output, edge cases",
+      "Use Claude to scaffold the first draft",
+      "Use Claude Code to review it against the actual requirement, not just whether it runs",
+      "Test against real or realistic data before trusting it",
+      "Real examples: PropTradeTech's chatbot, Eightcap's RAG tool and LLM assistant, Banxa's tiering workflow"
+    ],
     answer: `I write down exactly what the automation or workflow needs to do before I touch a prompt, the trigger, the expected output, and the edge cases, because a vague input gets vague code. Then I use Claude to scaffold the first version, whether that's a webhook handler, a workflow rule, or a PRD. Once there's a draft, I use Claude Code to review it specifically against what I wrote down, does this actually do what the requirement says, not just does it run. Then I test it against real or realistic data before trusting it, and iterate from there.
 
 The AI onboarding chatbot at PropTradeTech is a good example of that discipline in practice, defining exactly which questions and escalation triggers it needed to handle before building anything, then testing it against real user questions before rolling it out, which is what got it to a 35 percent reduction in support tickets and a 22 percent lift in onboarding completion.
@@ -681,17 +758,30 @@ At Banxa, it's the compliance tiering workflow, write the logic down first, then
   {
     category: "Round 2: Tech Ops & CTO",
     question: "How do you validate that an automation is working correctly rather than silently failing or doing the wrong thing quietly?",
-    answer: `I don't trust an automation just because it ran without throwing an error, silent failures are the dangerous kind. At Banxa I use Datadog to build out funnels and watch for anomalies, and I'd want the same thing here, logging on every step, the trigger, the enrichment, the AI output, the final action, so if something's wrong I can see exactly where it diverged rather than just seeing "it didn't work."
+    bullets: [
+      "Think like a compliance team: don't assume it's fine just because nothing crashed, check the actual outcomes",
+      "At Banxa: use Datadog to watch the onboarding funnel for anything unusual",
+      "At PropTradeTech: regularly checked KYC pass/fail rates and sanctions-screening false positive rates",
+      "At Eightcap: watched how often the fraud tool got it right over time, not just that it gave an answer",
+      "Run new automations alongside the manual process first and compare results before switching over",
+      "Set alerts for sudden spikes or drops, don't wait to find out weeks later"
+    ],
+    answer: `I think about this the same way a compliance team checks its own decisions, not by assuming a process is fine just because nothing crashed, but by regularly checking the actual outcomes it's producing.
 
-At PropTradeTech, the equivalent discipline was reviewing KYC pass and fail rates and the false positive rate on ComplyAdvantage's PEPs and sanctions checks on an ongoing basis, not just confirming the integration worked on day one. A screening automation that quietly starts flagging too aggressively, or not aggressively enough, is exactly the kind of silent failure that matters in a regulated environment.
+At Banxa, I use Datadog to watch the onboarding funnel and look for anything unusual, not just system errors. At PropTradeTech, we regularly checked KYC pass and fail rates and the false positive rate on our sanctions screening, because a check that's too strict or too loose is a silent failure even though nothing technically broke. At Eightcap, it was the same idea with our fraud tool, watching how often it got things right over time, not just trusting a single answer.
 
-At Eightcap, validating the RAG-based fraud tool meant watching investigation volume and false positive rates over time rather than assuming it was working because it returned an answer, a model that's confidently wrong is worse than one that visibly fails.
-
-Before trusting any automation fully, I'd run it in a shadow or parallel mode alongside the manual process for a period, comparing outputs rather than replacing the manual step outright, the same way I'd validate a tightened fraud rule before it goes fully live. And I'd set explicit alerting on the things that matter, a spike in failed webhook deliveries, a drop in the AI classification's confidence score, rather than assuming no news is good news.`
+Before I'd fully trust a new automation, I'd run it alongside the manual process for a while and compare the two, the same way you'd sanity-check a new compliance rule before switching it on for everyone. And I'd want an alert if something looks off, a sudden spike in failures, or the AI suddenly getting less confident, rather than finding out weeks later.`
   },
   {
     category: "Round 2: Tech Ops & CTO",
     question: "How do you decide something's worth automating versus leaving it manual?",
+    bullets: [
+      "Ask: is this a real judgement call, or repetitive lookup dressed up as one?",
+      "Banxa: only the threshold-check part of tiering got automated, not the risk judgement",
+      "PropTradeTech: clear-cut verifications auto-approved, ambiguous ones flagged for a human",
+      "Eightcap: reconciliation automated, disputes and edge cases stayed manual",
+      "Frequency matters too: how often it happens shapes how much effort is worth investing"
+    ],
     answer: `I go back to the same question I use for build versus configure decisions generally: is this step actually a judgement call, or is it repetitive lookup and data entry dressed up as one. When I built the compliance tiering workflow at Banxa, the first thing I did was map the process and separate the parts where compliance was making a genuine risk judgement from the parts where they were just checking a transaction volume against a threshold. Only the second category got automated.
 
 At PropTradeTech, the SumSub integration drew the same line, clear-cut verifications, a straightforward document match with no PEP or sanctions hit, moved through automatically, while anything ambiguous got flagged for manual review rather than forcing a yes or no automatically.
@@ -703,6 +793,13 @@ I'd apply the same filter to ops automation here, if a person is making a real c
   {
     category: "Round 2: Tech Ops & CTO",
     question: "Scenario: a support ticket comes in, it should update a CRM record and flag billing. How would you wire that up?",
+    bullets: [
+      "Trigger: a JIRA ticket matching certain criteria (e.g. tagged billing)",
+      "Orchestration layer pulls the HubSpot record and checks Maxio's billing status",
+      "Straightforward case: auto-update HubSpot, tag the JIRA ticket with billing context",
+      "Ambiguous or high-value case: route to a person",
+      "Real precedent: JIRA admin work, SumSub-Stripe reconciliation, Banxa's webhook flows"
+    ],
     answer: `I'd treat the JIRA ticket creation as the trigger, using JIRA's automation rules, ISRs, since I've set those up myself, to fire when a ticket matching certain criteria is created, say, tagged as a billing issue. That event would go into an orchestration layer that pulls the customer's HubSpot record via the API for context, and checks Maxio for their current billing status.
 
 If it's a straightforward case, an invoice mismatch, a known dunning event, I'd have it auto-update the HubSpot record and add a note, and tag the JIRA ticket with the relevant billing context so whoever picks it up isn't starting cold. If the case is ambiguous, high value, or doesn't match a known pattern, I'd route it to a person instead of guessing. Given I've actually administered JIRA's automation rules before, I'm confident I could configure the trigger side directly in JIRA, rather than needing custom development for that part.
@@ -712,6 +809,12 @@ This is close in shape to work I've actually done, administering JIRA's automati
   {
     category: "Round 2: Tech Ops & CTO",
     question: "How do you decide whether to build a custom solution versus using an off-the-shelf orchestration or automation platform?",
+    bullets: [
+      "Ask: is this genuinely specific to us, or a solved problem someone already built well?",
+      "Orchestration tools like Primer and Spreedly exist because most multi-PSP companies need that layer anyway",
+      "Build custom only when the logic is genuinely ours, e.g. Banxa's specific tiering thresholds",
+      "For JIRA/HubSpot/Maxio: check native automation and workflow builders before assuming custom middleware is needed"
+    ],
     answer: `I look at whether the problem is genuinely specific to us or whether it's a solved problem someone else has already built well. Orchestration is a good example, I've seen how Primer and Spreedly package up multi-provider routing and tokenisation as a product specifically because most companies running several PSPs end up needing that layer anyway, so building it from scratch would mean re-solving something that already has mature, tested options.
 
 Where I'd lean toward building custom is when the logic is specific to how we work, like the compliance tiering workflow I built at Banxa, no off-the-shelf tool was going to encode our specific thresholds and risk logic, so that had to be built rather than configured on top of someone else's platform.
@@ -722,6 +825,12 @@ For ops automation between JIRA, HubSpot and Maxio specifically, I'd start by ch
     category: "Round 2: Tech Ops & CTO",
     question: "Walk me through how you'd debug an automation that's failing intermittently between two systems.",
     flag: true,
+    bullets: [
+      "Pull up logging on every step: trigger, payload, enrichment, final action",
+      "Check if failures cluster around anything: payload shape, time of day, volume spike",
+      "Check delivery logs on the sending system too, not just my side",
+      "Isolate the failing step and reproduce it with the exact payload that failed"
+    ],
     answer: `I'd start by pulling up the logging I'd have insisted on at build time, the trigger, the payload, the enrichment step, and the final action, since intermittent failures are almost always a data or timing issue rather than a logic issue that's wrong every time. First thing I'd check is whether the failures cluster around anything, a specific payload shape, a specific time of day, a specific volume spike, since that usually points straight at the cause, a rate limit, a timeout, or a field that's sometimes missing.
 
 If it's a webhook-based integration, I'd check delivery logs on the sending system's side too, not just mine, since a webhook that's retried, delayed, or dropped on the sender's end looks identical to a bug in my own code if I'm only looking at my side. From there it's isolating the failing step and reproducing it with the exact payload that failed, rather than guessing from the general symptom.`,
@@ -730,6 +839,13 @@ If it's a webhook-based integration, I'd check delivery logs on the sending syst
   {
     category: "Round 2: Tech Ops & CTO",
     question: "How would you think about security and access when building an automation that touches customer or billing data?",
+    bullets: [
+      "Least privilege: the automation only gets the access it actually needs, nothing more",
+      "Secrets live in a secrets manager, not the automation logic, rotated and scoped per integration",
+      "Minimise what data travels with each event, a billing ticket doesn't need full card details",
+      "Log access rather than assuming nothing will ever need auditing",
+      "Same instinct behind the KYC/KYB decisioning work at Banxa and PropTradeTech"
+    ],
     answer: `Given my background is KYC, KYB and fraud decisioning, this is territory I'm genuinely comfortable in, not just aware of in the abstract. The principles I'd apply: least privilege, an automation gets access to exactly the fields and actions it needs and nothing more, not a broad API key that happens to also allow deleting records. Secrets and API keys don't live in the automation logic itself, they're in a secrets manager or environment configuration, and I'd want them rotated and scoped per integration rather than one shared credential across JIRA, HubSpot and Maxio.
 
 On the data side, billing and customer information moving between three systems means being deliberate about what actually needs to travel with each event, a JIRA ticket about a billing issue probably doesn't need the full card or bank details, just enough context to act. That's the same instinct behind the KYC and KYB decisioning work I've done at Banxa and PropTradeTech, minimise what's exposed at each step, and log access rather than assuming nothing will ever need auditing.`
@@ -738,6 +854,11 @@ On the data side, billing and customer information moving between three systems 
     category: "Round 2: Tech Ops & CTO",
     question: "What's your experience with low-code or workflow automation platforms outside of AI tools specifically?",
     flag: true,
+    bullets: [
+      "Azure Logic Apps at Clear Dynamics: real low-code integration work, visual workflow design",
+      "JIRA automation rules at PropTradeTech and Eightcap: same trigger-condition-action pattern",
+      "Haven't used Zapier, Make, or n8n specifically"
+    ],
     answer: `At Clear Dynamics I architected on Azure Logic Apps, Service Bus and API Management, which is genuinely low-code integration work, visual workflow design connecting systems together, just applied to enterprise banking clients like Latitude and Bank of Queensland rather than an ops stack. I also administered JIRA's own automation rules directly at PropTradeTech and Eightcap, which is the same low-code pattern, trigger, condition, action, inside a single tool rather than a dedicated platform.
 
 I haven't used a dedicated ops automation platform like Zapier, Make or n8n specifically.`,
@@ -746,6 +867,12 @@ I haven't used a dedicated ops automation platform like Zapier, Make or n8n spec
   {
     category: "Round 2: Tech Ops & CTO",
     question: "How do you handle disagreement with an engineer or a technical leader on the right approach?",
+    bullets: [
+      "Get the disagreement on the table early, not through slow delivery",
+      "Go back to what we're actually optimising for",
+      "Defer to the engineer or CTO's read on technical cost and risk",
+      "Push back on whether the business risk or outcome is properly weighed, that's my call"
+    ],
     answer: `I get the disagreement on the table early rather than letting it play out silently through slow delivery, and I go back to what we're actually optimising for rather than defending my original position. At Eightcap, disagreements about prioritisation were often really disagreements about what mattered most, not the ranking itself, which is part of why I ran ways-of-working and Agile training there, to get that kind of thing surfaced earlier.
 
 If it's a technical judgement call specifically, sequencing, architecture, build versus configure, I'll usually defer to the engineer or the CTO's read on cost and risk, since they can see technical constraints I can't. Where I'll push back is on the outcome or the business risk being properly weighed, that's genuinely my call to make, even if the technical path to get there isn't.`
@@ -753,6 +880,12 @@ If it's a technical judgement call specifically, sequencing, architecture, build
   {
     category: "Round 2: Tech Ops & CTO",
     question: "How would you explain a technical automation decision to a non-technical stakeholder, like Finance or Support?",
+    bullets: [
+      "Lead with outcome and risk, not mechanism",
+      "With engineers: sequencing and trade-offs. With leadership: the number first",
+      "Frame it as what changes for them, faster triage, fewer manual updates",
+      "Be clear about what still needs a human and why"
+    ],
     answer: `I lead with the outcome and the risk, not the mechanism. At Eightcap I reported into both the CEO and CTO, so I was used to switching between a technical conversation and a commercial one, sometimes in the same day, with engineers I'd go into sequencing and trade-offs, with leadership I'd lead with the number and only go into mechanism if asked.
 
 For something like an ops automation, I'd frame it as what changes for them, tickets get triaged faster, fewer manual updates, and where the boundaries are, what still needs a human and why, rather than explaining webhooks and API calls. That's the same instinct behind working closely with Marketing and Support at Banxa and Eightcap on onboarding and activation, translating what's actually happening under the hood into what it means for the people who have to live with it day to day.`
@@ -760,6 +893,12 @@ For something like an ops automation, I'd frame it as what changes for them, tic
   {
     category: "Round 2: Tech Ops & CTO",
     question: "What happens if two systems get out of sync, how do you reconcile that?",
+    bullets: [
+      "Treat a webhook as a signal to check state, not as the state itself",
+      "Webhooks can arrive late, out of order, or not at all",
+      "PropTradeTech: reconciled against Stripe's actual records rather than trusting the first payload",
+      "Want a periodic full reconciliation job underneath the event-driven automation as a safety net"
+    ],
     answer: `This is exactly the discipline behind the Stripe webhook reconciliation I built at PropTradeTech, treating the webhook as a signal to check state rather than as the state itself, since a webhook can arrive late, out of order, or not at all, and payment or billing state can change again after the fact. I built that to reconcile against Stripe's records directly rather than trusting the first webhook payload blindly.
 
 For a JIRA, HubSpot and Maxio setup, I'd want the same principle, an event triggers a reconciliation check against the source system's current state, not just a one-way write based on whatever the webhook said at that moment. And I'd want a periodic full reconciliation job running underneath the event-driven automation as a safety net, since event-driven systems can silently drift over time even when every individual event looked fine.`
@@ -953,6 +1092,7 @@ categories.forEach(cat => {
     inner += `</div>`;
     if (item.flag) inner += `<div class="flag">Personalize this one</div>`;
     if (item.diagramSvg) inner += `<div class="qa-diagram">${item.diagramSvg}</div>`;
+    if (item.bullets) inner += `<div class="qa-bullets"><div class="qa-bullets-label">Key points, say it your own way</div><ul>${item.bullets.map(b => `<li>${b}</li>`).join('')}</ul></div>`;
     inner += paragraphs(item.answer);
     if (item.flagNote) inner += `<div class="flag-note">${item.flagNote}</div>`;
     card.innerHTML = inner;
