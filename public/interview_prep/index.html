@@ -287,10 +287,47 @@
     line-height: 1.6;
   }
 
+  .ask-section {
+    max-width: 980px; margin: 44px auto 0; padding: 0 24px;
+  }
+  .ask-heading {
+    font-family: 'Fraunces', serif;
+    font-size: 19px; font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+  .ask-subheading {
+    font-size: 13px; color: var(--text-faint);
+    margin: 0 0 18px;
+  }
+  .ask-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+  .ask-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .ask-question {
+    font-size: 14.5px; color: var(--text);
+    line-height: 1.55; margin: 0 0 8px;
+  }
+  .ask-why {
+    font-size: 12.5px; color: var(--text-faint);
+    line-height: 1.5; margin: 0;
+    font-style: italic;
+  }
+
   @media (max-width: 600px) {
     .topbar { padding: 14px 16px 12px; }
     main { padding: 24px 16px 0; }
     footer.tip { padding: 24px 16px 0; }
+    .ask-section { padding: 0 16px; }
     h1 { font-size: 19px; }
   }
 </style>
@@ -318,6 +355,59 @@
 <main id="main">
   <div class="no-results" id="noResults">No matches. Try a different keyword.</div>
 </main>
+
+<div class="ask-section">
+  <h2 class="ask-heading">Questions to Ask Them</h2>
+  <p class="ask-subheading">Always visible, no need to hunt through tabs. Pick four or five depending on time, let a couple come up naturally rather than saving all of them for the end.</p>
+
+  <div class="ask-card">
+    <div class="ask-label">Config vs build balance</div>
+    <p class="ask-question">With a lean team, how does the balance actually play out day to day between platform configuration and automation versus a proper engineering build? Is it fairly even, or does it lean one way?</p>
+    <p class="ask-why">Shows I've already understood the core tension this role is built around, not just read it off the JD.</p>
+  </div>
+
+  <div class="ask-card">
+    <div class="ask-label">Product direction</div>
+    <p class="ask-question">You've built out Pay by Bank through PayID and PayTo on the NPP, and it looks like passkeys and account verification are a growing part of the story. Is the next stretch mostly about deepening those rails, or opening up new payment types and verticals?</p>
+    <p class="ask-why">Demonstrates real product research into Azupay specifically, not a generic fintech question.</p>
+  </div>
+
+  <div class="ask-card">
+    <div class="ask-label">Domain coverage</div>
+    <p class="ask-question">The role mentions contributing across product domains and covering other PMs when needed. What does that actually look like in practice, planned rotation, or more ad hoc depending on where the pressure is that quarter?</p>
+    <p class="ask-why">Tests my understanding of the domain flexibility this role explicitly asks for.</p>
+  </div>
+
+  <div class="ask-card">
+    <div class="ask-label">The biggest gap</div>
+    <p class="ask-question">What's the biggest manual or inefficient process right now that nobody's had the bandwidth to properly fix yet?</p>
+    <p class="ask-why">Directly actionable, and signals I'm already thinking about where I'd add value on day one rather than just learning the ropes.</p>
+  </div>
+
+  <div class="ask-card">
+    <div class="ask-label">What good looks like</div>
+    <p class="ask-question">What would "good" look like for whoever's in this seat at the six month mark?</p>
+    <p class="ask-why">Outcome-oriented rather than activity-oriented, matches the JD's own language about outcomes over output.</p>
+  </div>
+
+  <div class="ask-card">
+    <div class="ask-label">How product and engineering actually work together</div>
+    <p class="ask-question">Day to day, is product embedded closely with engineering and tech ops, pairing through the detail, or is it more scoped handoffs and check-ins?</p>
+    <p class="ask-why">Relevant to the XP-style delivery model this JD leans on, and useful for me to actually know before I say yes.</p>
+  </div>
+
+  <div class="ask-card">
+    <div class="ask-label">First 90 days</div>
+    <p class="ask-question">If I started in this role, what's the one thing you'd want me to get right in the first 90 days?</p>
+    <p class="ask-why">Practical, forward-looking, and gives me a real signal of what they'll actually judge me on early.</p>
+  </div>
+
+  <div class="ask-card">
+    <div class="ask-label">Genuine curiosity</div>
+    <p class="ask-question">What's been the most surprising customer or partner problem you've had to solve as PayTo adoption has grown?</p>
+    <p class="ask-why">A real question, not a script, shows actual interest in the business rather than just interviewing for the job.</p>
+  </div>
+</div>
 
 <footer class="tip">
   <div class="tip-box">This is a chemistry check as much as a competency check with a three-person panel. Fine to let a couple of the "Questions I'll Ask" come up naturally mid-conversation rather than saving them all for the end. Every amber-flagged card needs your real details filled in before the interview, especially the ones about why you're leaving Banxa and your notice period and salary, those are near-certain to come up.</div>
@@ -629,19 +719,24 @@ The tools they've mentioned are JIRA, HubSpot and Maxio. That combination points
   {
     category: "Round 2: Tech Ops & CTO",
     intro: true,
-    question: "Tell me about yourself (condensed, ~90 seconds, technical version for this round)",
+    question: "Tell me about yourself (expanded, ~2 minutes, technical version for this round)",
     bullets: [
-      "Engineering background, still hands-on, not just writing tickets",
-      "Banxa: built the compliance tiering workflow myself, use Claude + Claude Code daily, monitor with Datadog",
-      "PropTradeTech: built the SumSub webhook flow, Stripe reconciliation, the AI onboarding chatbot (35% ticket cut)",
-      "Eightcap: RAG-based fraud tool, internal LLM support assistant, actual JIRA administrator",
+      "Background spans wealth platforms, FX and now crypto, moving into new regulated spaces fast",
+      "Banxa: built the compliance categorisation workflow myself, use AI tools for PRDs/workflow logic, Claude Code to review builds",
+      "PropTradeTech: first tech and product hire at inception, worked with the C-suite, led teams across two countries, zero to market in 4 months",
+      "PropTradeTech: SumSub + Stripe flows, other payment integrations, AI chatbot (35% ticket cut)",
+      "Eightcap: RAG-based fraud tool, internal LLM support assistant",
+      "Both companies: JIRA admin, HappyFox/Zendesk setup, Cloudflare/DNS, Slack integrations and migrations",
+      "Clear Dynamics: genuinely low-code delivery work on Azure Logic Apps, just for banking clients",
       "The pattern: map the process, separate judgement from repetitive work, automate with AI plus a human checkpoint"
     ],
-    answer: `I'm a product manager with about 11 years across fintech and payments, and I started as a software engineer, so I still build things myself rather than just writing tickets for someone else.
+    answer: `I'm a product manager with about 11 years of experience across fintech, payments and SaaS, and I started out as a software engineer, so I still build things myself rather than just writing tickets for someone else. My background actually spans a few different domains, wealth platforms, FX and CFD trading, and now crypto payments, and the pattern across all of it is the same, I move into new regulated, technical spaces and get comfortable fast.
 
-At Banxa, I own onboarding and compliance for a crypto on and off ramp. I built a workflow that automatically tiers a user's risk based on location and transaction behaviour, and I use Claude and Claude Code daily, Claude to scaffold PRDs and workflow logic, Claude Code to review what's actually been built against the requirement. I use Datadog to monitor everything I ship too, not just assume it's working.
+At Banxa, I own onboarding and compliance for a crypto on and off ramp. I built a workflow that automatically categorises a user's compliance requirements based on location and transaction behaviour, and I use AI tools to build PRDs, workflow logic and automations, and Claude Code to review what's actually been built against the requirement.
 
-Before that, at PropTradeTech and Eightcap, I did a lot of hands-on integration work myself. At PropTradeTech I built the SumSub KYC webhook flow and the Stripe reconciliation, and an AI onboarding chatbot that cut support tickets by 35 percent. At Eightcap I built a RAG-based fraud tool and an internal LLM support assistant, and I was the actual JIRA administrator at both companies, setting up workflows and automation rules myself, not just using it as an end user.
+Before that, at PropTradeTech and Eightcap, I did a lot of hands-on integration work myself. PropTradeTech was a B2B prop trading platform I joined at inception as the first tech and product hire, working directly with the C-suite and leading development teams across two countries to take it from zero to market in about four months. Alongside building the internal tooling, I worked on integrations like the SumSub KYC flows, the Stripe flows, and other payment systems, plus an AI onboarding chatbot that cut support tickets by 35 percent. At Eightcap I built a RAG-based fraud tool and an internal LLM support assistant.
+
+I've also done a lot of internal tooling work at both companies, I was the actual JIRA administrator, setting up workflows and automation rules myself rather than just using it as an end user. I set up and integrated support tools like HappyFox and Zendesk, managed the Cloudflare accounts and DNS records, and worked on Slack integrations and migrations too. Earlier, at Clear Dynamics, I was doing genuinely low-code delivery work as well, architecting on Azure Logic Apps for banking clients, just applied to a different industry.
 
 So across all of it, the pattern's the same: map the process, figure out what's a real judgement call versus repetitive work, and build the automation, often with AI doing the reading and drafting, while keeping a human in the loop wherever the stakes are high. That's exactly the kind of hands-on automation work this round is testing for.`
   },
@@ -859,15 +954,40 @@ If it's a webhook-based integration, I'd check delivery logs on the sending syst
     category: "Round 2: Tech Ops & CTO",
     question: "How would you think about security and access when building an automation that touches customer or billing data?",
     bullets: [
-      "Least privilege: the automation only gets the access it actually needs, nothing more",
+      "Least privilege: an automation only gets the access it actually needs, nothing more, straight out of ISO 27001's access control principles",
       "Secrets live in a secrets manager, not the automation logic, rotated and scoped per integration",
-      "Minimise what data travels with each event, a billing ticket doesn't need full card details",
-      "Log access rather than assuming nothing will ever need auditing",
-      "Same instinct behind the KYC/KYB decisioning work at Banxa and PropTradeTech"
+      "PCI DSS (Payment Card Industry Data Security Standard): minimise who and what can touch cardholder-adjacent data",
+      "GDPR, if there's EU exposure: data minimisation, purpose limitation, and the right to erasure across every system data lands in",
+      "AI tools in the loop are data processors under GDPR too, they need a proper data processing agreement",
+      "Locally, the Australian Privacy Act and the APPs are the more directly relevant framework day to day"
     ],
-    answer: `Given my background is KYC, KYB and fraud decisioning, this is territory I'm genuinely comfortable in, not just aware of in the abstract. The principles I'd apply: least privilege, an automation gets access to exactly the fields and actions it needs and nothing more, not a broad API key that happens to also allow deleting records. Secrets and API keys don't live in the automation logic itself, they're in a secrets manager or environment configuration, and I'd want them rotated and scoped per integration rather than one shared credential across JIRA, HubSpot and Maxio.
+    answer: `The principles I'd apply: least privilege, an automation gets access to exactly the fields and actions it needs and nothing more, not a broad API key that happens to also allow deleting records. That's straight out of ISO 27001's access control principles, and it's the same logic PCI DSS, the Payment Card Industry Data Security Standard, applies to cardholder data, minimise who and what can touch it. Secrets and API keys don't live in the automation logic itself, they're in a secrets manager or environment configuration, rotated and scoped per integration rather than one shared credential across every system involved.
 
-On the data side, billing and customer information moving between three systems means being deliberate about what actually needs to travel with each event, a JIRA ticket about a billing issue probably doesn't need the full card or bank details, just enough context to act. That's the same instinct behind the KYC and KYB decisioning work I've done at Banxa and PropTradeTech, minimise what's exposed at each step, and log access rather than assuming nothing will ever need auditing.`
+Being deliberate about what data actually needs to travel with each event matters just as much, a support ticket about a billing issue doesn't need the full card or bank details, just enough context to act. That's the same minimisation principle PCI DSS applies to cardholder data and GDPR applies to personal data more broadly.
+
+If there's any GDPR exposure, EU customers or data, a few things matter specifically. Data minimisation, don't copy more personal data into a downstream system than the task actually needs. Purpose limitation, data collected for one reason shouldn't quietly end up used for something else without a proper basis. And the right to erasure, if a customer asks to be forgotten, an automation will have created records across multiple systems, not just the source of truth, so I'd want to know exactly where personal data ends up so it can actually be deleted everywhere. Any AI tool in the loop counts as a data processor under GDPR too, so it needs a proper data processing agreement.
+
+Being Australian, the more directly relevant framework day to day would actually be the Privacy Act and the Australian Privacy Principles, but the same instincts apply, minimise what's collected and shared, know where it ends up, and be able to account for it. It's the same discipline I already apply to KYC and KYB decisioning, minimise what's exposed at each step, and log access rather than assuming nothing will ever need auditing.`
+  },
+  {
+    category: "Round 2: Tech Ops & CTO",
+    question: "How do you make sure PII is protected and not passed to AI agents while using AI?",
+    bullets: [
+      "Minimise what's sent, only the fields the AI actually needs for that specific task",
+      "Redact or mask sensitive fields, card numbers, IDs, bank details, before they reach the model",
+      "Use enterprise AI tools with proper data handling terms, not consumer-tier products",
+      "Keep a human checkpoint on anything AI-drafted before it touches a real customer record",
+      "Log what data was actually sent to the AI layer, for auditability"
+    ],
+    answer: `I'd apply the same discipline to AI that I already use for KYC, KYB and AML data, minimise what's exposed, and treat a new tool as no exception to that.
+
+First, minimise what's sent in the first place. The AI doesn't need a customer's full record to draft a ticket summary or classify an issue, it needs the specific fields relevant to that task. If a name or account number isn't needed for the AI to do its job, I wouldn't pass it.
+
+Second, redact or mask sensitive fields before they reach the model, card numbers, bank details, government ID numbers, replacing them with placeholders or references rather than the raw value, so the AI step never actually sees the sensitive data, only what it needs to reason about the situation.
+
+Third, use tools built for enterprise use with the right data handling terms in place, not consumer-tier AI products that might retain or train on what's sent. At Banxa I use Claude through channels with proper data agreements rather than a free consumer tool, because what goes into a compliance workflow needs to stay within our control.
+
+Fourth, keep a human checkpoint on anything AI-drafted before it touches a real customer record or a real decision, the same principle I apply everywhere else, AI accelerates the reading and drafting, a person makes the final call where the stakes are real. And I'd want logging on what data was actually sent to the AI layer, the same way I'd want an audit trail on any other system touching customer data, so if a question ever comes up about what went where, there's a real answer rather than a guess.`
   },
   {
     category: "Round 2: Tech Ops & CTO",
@@ -888,39 +1008,48 @@ I haven't used a dedicated ops automation platform like Zapier, Make or n8n spec
     question: "How do you handle disagreement with an engineer or a technical leader on the right approach?",
     bullets: [
       "Get the disagreement on the table early, not through slow delivery",
-      "Go back to what we're actually optimising for",
-      "Defer to the engineer or CTO's read on technical cost and risk",
-      "Push back on whether the business risk or outcome is properly weighed, that's my call"
+      "Go back to what we're actually optimising for, not the original position",
+      "Defer to the engineer or technical leader's read on cost and risk for technical calls",
+      "Push back on whether the business risk or outcome is properly weighed, that's my call",
+      "Example: Eightcap prioritisation disagreements, ran ways-of-working training to surface this earlier"
     ],
-    answer: `I get the disagreement on the table early rather than letting it play out silently through slow delivery, and I go back to what we're actually optimising for rather than defending my original position. At Eightcap, disagreements about prioritisation were often really disagreements about what mattered most, not the ranking itself, which is part of why I ran ways-of-working and Agile training there, to get that kind of thing surfaced earlier.
+    answer: `I get the disagreement on the table early rather than letting it play out silently through slow delivery, and I go back to what we're actually optimising for rather than defending my original position, since a lot of disagreements are really about differing priorities, not the specific approach itself.
 
-If it's a technical judgement call specifically, sequencing, architecture, build versus configure, I'll usually defer to the engineer or the CTO's read on cost and risk, since they can see technical constraints I can't. Where I'll push back is on the outcome or the business risk being properly weighed, that's genuinely my call to make, even if the technical path to get there isn't.`
+If it's a technical judgement call specifically, sequencing, architecture, build versus configure, I'll usually defer to the engineer or the technical leader's read on cost and risk, since they can see constraints I can't. Where I will push back is on whether the outcome or the business risk has been properly weighed, that's genuinely my call to make, even if the technical path to get there isn't.
+
+Example: at Eightcap, disagreements about prioritisation were often really disagreements about what mattered most, not the ranking itself, which is part of why I ran ways-of-working and Agile training there, to get that kind of thing surfaced earlier.`
   },
   {
     category: "Round 2: Tech Ops & CTO",
     question: "How would you explain a technical automation decision to a non-technical stakeholder, like Finance or Support?",
     bullets: [
       "Lead with outcome and risk, not mechanism",
-      "With engineers: sequencing and trade-offs. With leadership: the number first",
-      "Frame it as what changes for them, faster triage, fewer manual updates",
-      "Be clear about what still needs a human and why"
+      "With engineers: sequencing and trade-offs. With a non-technical stakeholder: what changes for them, first",
+      "Frame it as faster triage, fewer manual updates, not webhooks and API calls",
+      "Be clear about what still needs a human and why",
+      "Example: reported into both CEO and CTO at Eightcap, worked closely with Marketing and Support at Eightcap and Banxa"
     ],
-    answer: `I lead with the outcome and the risk, not the mechanism. At Eightcap I reported into both the CEO and CTO, so I was used to switching between a technical conversation and a commercial one, sometimes in the same day, with engineers I'd go into sequencing and trade-offs, with leadership I'd lead with the number and only go into mechanism if asked.
+    answer: `I lead with the outcome and the risk, not the mechanism. With engineers I'd go into sequencing and trade-offs, but with a non-technical stakeholder I'd lead with what actually changes for them and only go into mechanism if they ask for it.
 
-For something like an ops automation, I'd frame it as what changes for them, tickets get triaged faster, fewer manual updates, and where the boundaries are, what still needs a human and why, rather than explaining webhooks and API calls. That's the same instinct behind working closely with Marketing and Support at Banxa and Eightcap on onboarding and activation, translating what's actually happening under the hood into what it means for the people who have to live with it day to day.`
+For something like an ops automation, that means framing it as what changes day to day, tickets get triaged faster, fewer manual updates, and being clear about where the boundaries are, what still needs a human and why, rather than explaining webhooks and API calls. The goal is translating what's happening under the hood into what it actually means for the people who have to live with it.
+
+Example: at Eightcap I reported into both the CEO and CTO, so I was used to switching between a technical conversation and a commercial one in the same day, and I worked closely with Marketing and Support at both Eightcap and Banxa on onboarding and activation, which is where this instinct comes from.`
   },
   {
     category: "Round 2: Tech Ops & CTO",
     question: "What happens if two systems get out of sync, how do you reconcile that?",
     bullets: [
-      "Treat a webhook as a signal to check state, not as the state itself",
+      "Treat an event or webhook as a signal to check state, not as the state itself",
       "Webhooks can arrive late, out of order, or not at all",
-      "PropTradeTech: reconciled against Stripe's actual records rather than trusting the first payload",
-      "Want a periodic full reconciliation job underneath the event-driven automation as a safety net"
+      "An event should trigger a check against the source system's actual current state",
+      "Run a periodic full reconciliation job underneath the event-driven automation as a safety net",
+      "Example: reconciled Stripe webhooks against Stripe's actual records at PropTradeTech"
     ],
-    answer: `This is exactly the discipline behind the Stripe webhook reconciliation I built at PropTradeTech, treating the webhook as a signal to check state rather than as the state itself, since a webhook can arrive late, out of order, or not at all, and payment or billing state can change again after the fact. I built that to reconcile against Stripe's records directly rather than trusting the first webhook payload blindly.
+    answer: `I treat an event or webhook as a signal to check state, not as the state itself. Webhooks can arrive late, out of order, or not at all, and the underlying state can change again after the fact, so trusting the first payload blindly is exactly how two systems quietly drift apart.
 
-For a JIRA, HubSpot and Maxio setup, I'd want the same principle, an event triggers a reconciliation check against the source system's current state, not just a one-way write based on whatever the webhook said at that moment. And I'd want a periodic full reconciliation job running underneath the event-driven automation as a safety net, since event-driven systems can silently drift over time even when every individual event looked fine.`
+The approach: an event triggers a reconciliation check against the source system's actual current state, not just a one-way write based on whatever the event said at that moment. On top of that, I'd want a periodic full reconciliation job running underneath the event-driven automation as a safety net, since event-driven systems can drift silently over time even when every individual event looked fine on its own.
+
+Example: I built exactly this at PropTradeTech, reconciling Stripe webhooks against Stripe's actual records rather than trusting the first payment intent payload, since payment state can change again after the initial webhook fires.`
   },
 
   // ---------- PAYMENT RAILS & PROVIDERS (reference notes) ----------
