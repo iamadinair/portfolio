@@ -167,6 +167,30 @@
     display: flex; justify-content: space-between; align-items: flex-start;
     gap: 12px;
   }
+  .qa-card.collapsible .card-top { cursor: pointer; }
+  .qa-card.collapsible .qa-question { margin-bottom: 0; }
+  .qa-chevron {
+    flex: 0 0 auto;
+    color: var(--text-faint);
+    font-size: 13px;
+    line-height: 1;
+    margin-top: 2px;
+    transition: transform 0.2s ease;
+  }
+  .qa-card.collapsible.collapsed .qa-chevron { transform: rotate(-90deg); }
+  .qa-body {
+    max-height: 3000px;
+    overflow: hidden;
+    opacity: 1;
+    margin-top: 12px;
+    transition: max-height 0.25s ease, opacity 0.2s ease, margin-top 0.2s ease;
+  }
+  .qa-card.collapsible.collapsed .qa-body {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    pointer-events: none;
+  }
   .qa-question {
     font-family: 'Inter', sans-serif;
     font-weight: 600; font-size: 15px;
@@ -1220,8 +1244,9 @@ categories.forEach(cat => {
 
   DATA.filter(d => d.category === cat).forEach(item => {
     cardIndex++;
+    const isCollapsible = cat === "Round 2: Tech Ops & CTO";
     const card = document.createElement('div');
-    card.className = 'qa-card';
+    card.className = 'qa-card' + (isCollapsible ? ' collapsible collapsed' : '');
     card.dataset.question = item.question.toLowerCase();
     card.dataset.answer = item.answer.toLowerCase();
     card.dataset.cat = cat;
@@ -1235,15 +1260,21 @@ categories.forEach(cat => {
       inner += `<div class="qa-question">${item.question}</div>`;
     } else {
       inner += `<div class="qa-question">${item.question}</div>`;
-      inner += `<label class="practice"><input type="checkbox" data-card="${card.id}"> done</label>`;
+      inner += `<label class="practice" onclick="event.stopPropagation()"><input type="checkbox" data-card="${card.id}"> done</label>`;
     }
+    if (isCollapsible) inner += `<span class="qa-chevron">&#9662;</span>`;
     inner += `</div>`;
-    if (item.flag) inner += `<div class="flag">Personalize this one</div>`;
-    if (item.diagramSvg) inner += `<div class="qa-diagram">${item.diagramSvg}</div>`;
-    if (item.bullets) inner += `<div class="qa-bullets"><div class="qa-bullets-label">Key points, say it your own way</div><ul>${item.bullets.map(b => `<li>${b}</li>`).join('')}</ul></div>`;
-    inner += paragraphs(item.answer);
-    if (item.flagNote) inner += `<div class="flag-note">${item.flagNote}</div>`;
+    let body = '';
+    if (item.flag) body += `<div class="flag">Personalize this one</div>`;
+    if (item.diagramSvg) body += `<div class="qa-diagram">${item.diagramSvg}</div>`;
+    if (item.bullets) body += `<div class="qa-bullets"><div class="qa-bullets-label">Key points, say it your own way</div><ul>${item.bullets.map(b => `<li>${b}</li>`).join('')}</ul></div>`;
+    body += paragraphs(item.answer);
+    if (item.flagNote) body += `<div class="flag-note">${item.flagNote}</div>`;
+    inner += isCollapsible ? `<div class="qa-body">${body}</div>` : body;
     card.innerHTML = inner;
+    if (isCollapsible) {
+      card.querySelector('.card-top').addEventListener('click', () => card.classList.toggle('collapsed'));
+    }
     block.appendChild(card);
   });
 
@@ -1294,6 +1325,7 @@ function runSearch() {
     document.querySelectorAll('.category-block').forEach(block => block.classList.remove('hidden'));
     renderTabs();
     document.querySelectorAll('.qa-card').forEach(c => c.classList.remove('hidden'));
+    document.querySelectorAll('.qa-card.collapsible').forEach(c => c.classList.add('collapsed'));
     return;
   }
 
@@ -1303,6 +1335,7 @@ function runSearch() {
   document.querySelectorAll('.qa-card').forEach(card => {
     const matches = card.dataset.question.includes(q) || card.dataset.answer.includes(q);
     card.classList.toggle('hidden', !matches);
+    if (card.classList.contains('collapsible')) card.classList.toggle('collapsed', !matches);
     if (matches) matchCount++;
   });
 
